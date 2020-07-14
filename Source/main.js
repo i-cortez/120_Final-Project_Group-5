@@ -12,7 +12,7 @@ const config =
     type: Phaser.Auto,
     width: 1280,
     height: 720,
-    scene: [Menu]
+    scene: [Menu, Scene0, Scene1, Scene2]
 };
 
 // define game
@@ -32,6 +32,17 @@ let menuConfig =
         bottom: 5
     },
     fixedWidth: 0
+};
+
+let musicConfig =
+{
+    mute: false,
+    volume: 1,
+    rate: 1,
+    detune: 0,
+    seek: 0,
+    loop: true,
+    delay: 0
 };
 
 

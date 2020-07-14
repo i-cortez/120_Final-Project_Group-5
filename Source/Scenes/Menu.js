@@ -29,6 +29,9 @@ class Menu extends Phaser.Scene
         this.load.audio("menuTune", "Assets/Sounds/noirintro.wav");
     }
 
+    //--------------------------------------------------------------------------
+    // CREATE
+    //--------------------------------------------------------------------------
     create()
     {
         // add background image
@@ -85,47 +88,44 @@ class Menu extends Phaser.Scene
         this.startButton.on
         (
             "pointerover",
-            () => {this.buttonHoverState()}
+            () =>
+            {
+                menuConfig.color = "#770000";
+                this.startButton.setStyle(menuConfig);
+            }
         );
 
         this.startButton.on
         (
             "pointerout",
-            () => {this.buttonResetState()}
+            () =>
+            {
+                menuConfig.color = "#f8f8ff";
+                this.startButton.setStyle(menuConfig);
+            }
         );
         //----------------------------------------------------------------------
 
         this.meunMusic = this.sound.add("menuTune");
-        let musicConfig =
-        {
-            mute: false,
-            volume: 1,
-            rate: 1,
-            detune: 0,
-            seek: 0,
-            loop: true,
-            delay: 0
-        };
-
         this.meunMusic.play(musicConfig);
+
+        this.startButton.on
+        (
+            "pointerdown",
+            () =>
+            {
+                this.meunMusic.stop();
+                menuConfig.color = "#f8f8ff";
+                this.scene.start("firstWords");
+            }
+        );
     }
+    //-end create()-------------------------------------------------------------
 
     update()
     {
         // check for user input
         // switch scenes
-    }
-
-    buttonHoverState()
-    {
-        menuConfig.color = "#770000";
-        this.startButton.setStyle(menuConfig);
-    }
-
-    buttonResetState()
-    {
-        menuConfig.color = "#f8f8ff";
-        this.startButton.setStyle(menuConfig);
     }
 }
 
