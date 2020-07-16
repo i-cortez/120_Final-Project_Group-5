@@ -4,7 +4,7 @@
 // 7-10-2020
 // Group 5 Game
 //
-// This file contains the code for Scene 0
+// This file contains the code for Scene 0: Rough and Tumble World Monologue
 //
 
 class Scene0 extends Phaser.Scene
@@ -14,13 +14,6 @@ class Scene0 extends Phaser.Scene
     {
         super("firstWords"); // argument is the identifier for this scene
     }
-
-    // Phaser scenes are controlled by the following flow of functions
-    // first the init() function is used to prepare data
-    // the preload() function is used to load music and images
-    // the create() function is used to add objects to the game
-    // the update() is a loop that runs constantly
-    //
 
     preload()
     {
@@ -116,3 +109,4 @@ class Scene0 extends Phaser.Scene
         return cutText;
     }
 }
+

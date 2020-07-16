@@ -4,7 +4,8 @@
 // 7-10-2020
 // Group 5 Game
 //
-// This file contains the code for the menu scene
+// This file contains the code for the Menu Screen
+//
 
 class Menu extends Phaser.Scene
 {
@@ -24,7 +25,6 @@ class Menu extends Phaser.Scene
     {
         // preload the background image with the load image function
         this.load.image("background", "Assets/Images/120sbackground.png");
-
         // load the menu scene music
         this.load.audio("menuTune", "Assets/Sounds/noirintro.wav");
     }
@@ -109,12 +109,24 @@ class Menu extends Phaser.Scene
         this.meunMusic = this.sound.add("menuTune");
         this.meunMusic.play(musicConfig);
 
+        this.input.on
+        (
+            "pointerdown",
+            () =>
+            {
+                if(game.sound.context.state === 'suspended')
+                {
+                    game.sound.context.resume();
+                }
+            }
+        );
+
         this.startButton.on
         (
             "pointerdown",
             () =>
             {
-                this.meunMusic.stop();
+                // this.meunMusic.stop();
                 menuConfig.color = "#f8f8ff";
                 this.scene.start("firstWords");
             }

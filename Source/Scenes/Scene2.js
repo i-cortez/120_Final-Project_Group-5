@@ -4,7 +4,7 @@
 // 7-10-2020
 // Group 5 Game
 //
-// This file contains the code for Scene 2
+// This file contains the code for Scene 2: The Room
 //
 
 class Scene2 extends Phaser.Scene
