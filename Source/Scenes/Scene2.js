@@ -90,8 +90,7 @@ class Scene2 extends Phaser.Scene
 
     update()
     {
-        // hi
-
+        // move the fog across the screen
         this.fog.tilePositionX -= 1;
     }
 }
