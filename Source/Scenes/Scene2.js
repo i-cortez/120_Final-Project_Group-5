@@ -78,9 +78,14 @@ class Scene2 extends Phaser.Scene
             () => {this.nightstand.setFrame(0);}
         );
 
+        this.nightstand.on
+        (
+            "pointerdown",
+            () => {this.scene.start("intermission");}
+        );
+
         this.cityMusic = this.sound.add("cityTune");
         this.cityMusic.play(musicConfig);
-        
     }
 
     update()

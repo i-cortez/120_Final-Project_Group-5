@@ -13,7 +13,7 @@ const config =
     width: 1280,
     height: 720,
     // debug scene: [Scene1]
-    scene: [Menu, Scene0, Scene1, Scene2]
+    scene: [Menu, Scene0, Scene1, Scene2, Scene3]
 };
 
 // define game
@@ -45,5 +45,4 @@ let musicConfig =
     loop: true,
     delay: 0
 };
-
 

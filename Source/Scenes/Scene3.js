@@ -7,3 +7,22 @@
 // This file contains the code for Scene 3: The Landlord
 //
 
+class Scene3 extends Phaser.Scene
+{
+    constructor()
+    {
+        super("intermission");
+    }
+
+    create()
+    {
+        this.continue = this.add.text
+        (
+            640,
+            360,
+            "To be continued...",
+            menuConfig
+        ).setOrigin(0.5);
+    }
+}
+
