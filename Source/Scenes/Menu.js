@@ -23,10 +23,16 @@ class Menu extends Phaser.Scene
 
     preload()
     {
+        // set the loader path
+        this.load.path = "./Assets/";
         // preload the background image with the load image function
-        this.load.image("background", "Assets/Images/120sbackground.png");
+        this.load.image
+        (
+            "menuBackground",
+            "Images/Backgrounds/background_0.png"
+        );
         // load the menu scene music
-        this.load.audio("menuTune", "Assets/Sounds/noirintro.wav");
+        this.load.audio("menuTune", "Sounds/noirintro.wav");
     }
 
     //--------------------------------------------------------------------------
@@ -39,7 +45,7 @@ class Menu extends Phaser.Scene
         (
             0, // horizontal position
             0, // vertical position
-            "background" // texture to render with
+            "menuBackground" // texture to render with
         ).setOrigin(0, 0);
 
         let centerX = game.config.width / 2;
@@ -133,11 +139,5 @@ class Menu extends Phaser.Scene
         );
     }
     //-end create()-------------------------------------------------------------
-
-    update()
-    {
-        // check for user input
-        // switch scenes
-    }
 }
 

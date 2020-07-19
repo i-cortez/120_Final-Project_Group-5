@@ -17,8 +17,12 @@ class Scene0 extends Phaser.Scene
 
     preload()
     {
+        // set the loader path
+        this.load.path = "./Assets/Images/Backgrounds/";
+        // preload the background image with the load image function
+        this.load.image("s0Background", "background_1.png");
         // load the fog image
-        this.load.image("fog", "Assets/Images/fog.png");
+        this.load.image("fog", "fog.png");
     }
 
     create()
@@ -28,7 +32,7 @@ class Scene0 extends Phaser.Scene
         (
             0, // horizontal position
             0, // vertical position
-            "background" // texture to render with
+            "s0Background" // texture to render with
         ).setOrigin(0, 0);
 
         // add the fog
@@ -85,6 +89,7 @@ class Scene0 extends Phaser.Scene
             () =>
             {
                 menuConfig.color = "#f8f8ff";
+                this.continue.removeInteractive();
                 this.scene.start("missingSocks");
             }
         );

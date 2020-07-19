@@ -18,19 +18,25 @@ class Scene1 extends Phaser.Scene
 
     preload()
     {
+
+        // set the loader path
+        this.load.path = "./Assets/Images/";
         // load nightstand
-        this.load.image("ns_bg","Assets/Images/night_stand_scene.png");
+        this.load.image("s1Background","Backgrounds/background_2.png");
 
         // load top drawer spritesheet
         this.load.spritesheet
         (
             "top_d",
-            "Assets/Images/topdrawer_spritesheet.png",
+            "Cutouts/topdrawer_spritesheet.png",
             {frameWidth: 645, frameHeight: 320}
         );
 
         // load bottom drawer
         // this.load.image("bottom_d", "Assets/Images/bottomdrawer.png");
+
+        // load the open drawer image
+        this.load.image("top_d_op", "Cutouts/topdrawer_open.png");
     }
 
     create()
@@ -40,7 +46,7 @@ class Scene1 extends Phaser.Scene
         (
             0, // horizontal position
             0, // vertical position
-            "ns_bg" // texture to render with
+            "s1Background" // texture to render with
         ).setOrigin(0, 0);
 
         // add top drawer sprite
@@ -50,19 +56,30 @@ class Scene1 extends Phaser.Scene
             240, // vertical position
             "top_d"
         ).setOrigin(0, 0).setFrame(0).setInteractive();
+        this.topD.tint = 0x770000;
 
         // check for pointer over object
         this.topD.on
         (
             "pointerover",
-            () => {this.topD.setFrame(1);}
+            () =>
+            {
+                // this.topD.setFrame(1);
+                this.topD.tint = 0xffdf00;
+                console.log("pointerover");
+            }
         );
 
         // check for pointer leaving object
         this.topD.on
         (
             "pointerout",
-            () => {this.topD.setFrame(0);}
+            () =>
+            {
+                // this.topD.setFrame(0);
+                this.topD.tint = 0x770000;
+                console.log("pointerout");
+            }
         );
 
         this.topD.on
@@ -70,13 +87,12 @@ class Scene1 extends Phaser.Scene
             "pointerdown",
             () =>
             {
-                this.topD.setFrame(0);
+                // this.topD.setFrame(0);
+                this.topD.clearTint();
                 this.topD.removeInteractive(); // disable interactivity
                 this.closeScene(); // displays end of scene text
             }
         );
-
-        
     }
 
     update()
@@ -148,3 +164,4 @@ class Scene1 extends Phaser.Scene
         );
     }
 }
+
