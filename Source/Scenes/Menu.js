@@ -28,7 +28,7 @@ class Menu extends Phaser.Scene
         // preload the background image with the load image function
         this.load.image
         (
-            "menuBackground",
+            "background_0",
             "Images/Backgrounds/background_0.png"
         );
         // load the menu scene music
@@ -45,7 +45,7 @@ class Menu extends Phaser.Scene
         (
             0, // horizontal position
             0, // vertical position
-            "menuBackground" // texture to render with
+            "background_0" // texture to render with
         ).setOrigin(0, 0);
 
         let centerX = game.config.width / 2;
@@ -79,6 +79,7 @@ class Menu extends Phaser.Scene
             menuConfig
         ).setOrigin(0.5);
 
+        menuConfig.color = colorPalette.blueStr;
         this.startButton = this.add.text
         (
             centerX - 475,
@@ -96,7 +97,7 @@ class Menu extends Phaser.Scene
             "pointerover",
             () =>
             {
-                menuConfig.color = "#770000";
+                menuConfig.color = colorPalette.redStr;
                 this.startButton.setStyle(menuConfig);
             }
         );
@@ -106,7 +107,7 @@ class Menu extends Phaser.Scene
             "pointerout",
             () =>
             {
-                menuConfig.color = "#f8f8ff";
+                menuConfig.color = colorPalette.blueStr;
                 this.startButton.setStyle(menuConfig);
             }
         );
@@ -132,8 +133,8 @@ class Menu extends Phaser.Scene
             "pointerdown",
             () =>
             {
-                // this.meunMusic.stop();
-                menuConfig.color = "#f8f8ff";
+                menuConfig.color = colorPalette.greyStr;
+                this.startButton.removeInteractive();
                 this.scene.start("firstWords");
             }
         );

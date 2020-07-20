@@ -22,7 +22,7 @@ class Scene2 extends Phaser.Scene
         // load the background image
         this.load.image
         (
-            "s2Background","Images/Backgrounds/background_3.png"
+            "background_3","Images/Backgrounds/background_3.png"
         );
 
         // load the nightstand spritesheet
@@ -32,8 +32,12 @@ class Scene2 extends Phaser.Scene
             "Images/Cutouts/nightstand.png",
         );
 
+        this.load.image("mothdrawer", "Images/Cutouts/mothdrawer.png");
+        this.load.image("car_0", "Images/Cutouts/car_0.png");
+        this.load.image("beary_0", "Images/Characters/beary_0.png");
+
         // load the menu scene music
-        this.load.audio("cityTune", "Sounds/fog_city.wav");
+        this.load.audio("fog_city", "Sounds/fog_city.wav");
     }
 
     create()
@@ -43,7 +47,7 @@ class Scene2 extends Phaser.Scene
         (
             0, // horizontal position
             0, // vertical position
-            "s2Background" // texture to render with
+            "background_3" // texture to render with
         ).setOrigin(0, 0);
 
         // add the nightstand sprite
@@ -53,7 +57,32 @@ class Scene2 extends Phaser.Scene
             160, // vertical position
             "nightstand" // texture to render with 
         ).setOrigin(0, 0).setInteractive();
-        this.nightstand.tint = 0x770000;
+        this.nightstand.tint = 0x2a3439;
+
+        this.beary = this.add.image
+        (
+            167,
+            549,
+            "beary_0"
+        ).setOrigin(0);
+        this.beary.tint = 0x54626f;
+
+        this.car = this.add.image
+        (
+            1150,
+            615,
+            "car_0"
+        ).setOrigin(0);
+        this.car.tint = 0x2a3439;
+
+        this.mothdrawer = this.add.image
+        (
+            479,
+            192,
+            "mothdrawer"
+        ).setOrigin(0);
+        this.mothdrawer.tint = 0x5c544e;
+
 
         // add the fog
         this.fog = this.add.tileSprite
@@ -83,7 +112,7 @@ class Scene2 extends Phaser.Scene
             () =>
             {
                 // this.nightstand.setFrame(0);
-                this.nightstand.tint = 0x770000;
+                this.nightstand.tint = 0x2a3439;
 
             }
         );
@@ -94,12 +123,12 @@ class Scene2 extends Phaser.Scene
             () =>
             {
                 this.nightstand.removeInteractive();
-                this.sound.stopByKey("cityTune");
+                this.sound.stopByKey("fog_city");
                 this.scene.start("mothfia");
             }
         );
 
-        this.cityMusic = this.sound.add("cityTune");
+        this.cityMusic = this.sound.add("fog_city");
         this.cityMusic.play(musicConfig);
     }
 

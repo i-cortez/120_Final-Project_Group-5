@@ -10,7 +10,7 @@
 class Scene0 extends Phaser.Scene
 {
 
-    constructor(sound)
+    constructor()
     {
         super("firstWords"); // argument is the identifier for this scene
     }

@@ -22,13 +22,13 @@ class Scene1 extends Phaser.Scene
         // set the loader path
         this.load.path = "./Assets/Images/";
         // load nightstand
-        this.load.image("s1Background","Backgrounds/background_2.png");
+        this.load.image("background_2","Backgrounds/background_2.png");
 
         // load top drawer spritesheet
-        this.load.spritesheet
+        this.load.image
         (
-            "top_d",
-            "Cutouts/topdrawer_spritesheet.png",
+            "drawer_u_0",
+            "Cutouts/drawer_u_0.png",
             {frameWidth: 645, frameHeight: 320}
         );
 
@@ -46,7 +46,7 @@ class Scene1 extends Phaser.Scene
         (
             0, // horizontal position
             0, // vertical position
-            "s1Background" // texture to render with
+            "background_2" // texture to render with
         ).setOrigin(0, 0);
 
         // add top drawer sprite
@@ -54,9 +54,9 @@ class Scene1 extends Phaser.Scene
         (
             320, // horizontal position
             240, // vertical position
-            "top_d"
+            "drawer_u_0"
         ).setOrigin(0, 0).setFrame(0).setInteractive();
-        this.topD.tint = 0x770000;
+        this.topD.tint = 0x2a3439;
 
         // check for pointer over object
         this.topD.on
@@ -77,7 +77,7 @@ class Scene1 extends Phaser.Scene
             () =>
             {
                 // this.topD.setFrame(0);
-                this.topD.tint = 0x770000;
+                this.topD.tint = 0x2a3439;
                 console.log("pointerout");
             }
         );
