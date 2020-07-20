@@ -1,0 +1,72 @@
+[
+    [
+        {
+            "speaker": "agent",
+            "dialogue": "If he’s got a case there’s only one place that Theodore goes after work, a cafe in downtown called Purple. I see him in the window, looking over a folder. I steel myself for this conversation, Theodore was my old partner, I’m sure he’ll understand.",
+            "newSpeaker": "false"
+        },
+        {
+            "speaker": "agent",
+            "dialogue": "I entered the cafe and walked past the waitress and right up to Teddy, “Teddy, I need help with a case.”",
+            "newSpeaker": "true"
+        },
+        {
+            "speaker": "agent",
+            "dialogue": "Thanks",
+            "newSpeaker": "true"
+        },
+        {
+            "speaker": "agent",
+            "dialogue": "I’m sorry about that",
+            "newSpeaker": "true"
+        },
+        {
+            "speaker": "agent",
+            "dialogue": "I need you to drop the case with the Mothfia.",
+            "newSpeaker": "true"
+        },
+        {
+            "speaker": "agent",
+            "dialogue": "Yes, she’s missing",
+            "newSpeaker": "true"
+        },
+        {
+            "speaker": "agent",
+            "dialogue": "My eyes fight back tears, “Teddy I…”",
+            "newSpeaker": "true"
+        }
+    ]
+
+    [
+        {
+            "speaker": "teddy",
+            "dialogue": "Theadore looks up at me, he must have seen the panic in my eyes, “Oh, of course, please sit down.”",
+            "newSpeaker": "true"
+        },
+        {
+            "speaker": "teddy",
+            "dialogue": "What’s wrong? It must be important because you’ve not spoken to me since you left the force.",
+            "newSpeaker": "true"
+        },
+        {
+            "speaker": "teddy",
+            "dialogue": "Ah don’t worry I’m just giving you a hard time, but I won’t lie, I did miss having some conversation to go with my coffee.",
+            "newSpeaker": "true"
+        },
+        {
+            "speaker": "teddy",
+            "dialogue": "Teddy stopped smiling and looked at me, I could see him running the numbers in his head. I see him thinking about all the times I’ve let him down, about all the favors I’ve asked him to do, about abandoning him. “Is this about Sheila?”",
+            "newSpeaker": "true"
+        },
+        {
+            "speaker": "teddy",
+            "dialogue": "He sighs, “Consider it done, but I’m going to want you to order a coffee and sit with me for a bit.”",
+            "newSpeaker": "true"
+        },
+        {
+            "speaker": "teddy",
+            "dialogue": "Don’t worry about it, I’m just glad to see you again old friend.",
+            "newSpeaker": "false"
+        }
+    ]
+]
