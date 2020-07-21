@@ -7,13 +7,11 @@
         },
         {
             "speaker": "Agent",
-            "dialogue": "The place was a mess, it seemed like someone scrambled to leave or maybe...",
-            "newSpeaker": "false"
+            "dialogue": "The place was a mess, it seemed like someone scrambled to leave or maybe..."
         },
         {
             "speaker": "Agent",
-            "dialogue": "Someone had tossed the place looking for something and I already had a suspect in mind...",
-            "newSpeaker": "false"
+            "dialogue": "Someone had tossed the place looking for something and I already had a suspect in mind..."
         }
     ]
 ]

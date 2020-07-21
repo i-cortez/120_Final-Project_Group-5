@@ -7,18 +7,15 @@
         },
         {
             "speaker": "Agent",
-            "dialogue": "I don't hate the cold but I hate the fog that rolls in, it covers the ugliness in the city, it obscures the truth and as a private eye the truth is how I put bread on the table and soda in my cup.",
-            "newSpeaker": "false"
+            "dialogue": "I don't hate the cold but I hate the fog that rolls in, it covers the ugliness in the city, it obscures the truth and as a private eye the truth is how I put bread on the table and soda in my cup."
         },
         {
             "speaker": "Agent",
-            "dialogue": "But now that I don't have a case today I'm seeing my partner, and I don't mean an invesitgation aide.",
-            "newSpeaker": "false"
+            "dialogue": "But now that I don't have a case today I'm seeing my partner, and I don't mean an invesitgation aide."
         },
         {
             "speaker": "Agent",
-            "dialogue": "Let's see if we can reach before the fog makes driving a hassle.",
-            "newSpeaker": "false"
+            "dialogue": "Let's see if we can reach before the fog makes driving a hassle."
         }
     ]
 ]

@@ -22,7 +22,6 @@ class Scene0 extends Phaser.Scene
 
         // preload the background images
         this.load.image("background_1", "background_1.png");
-        this.load.image("still_fog", "still_fog.png");
     }
 
     create()
@@ -35,16 +34,6 @@ class Scene0 extends Phaser.Scene
             "background_1" // texture to render with
         ).setOrigin(0, 0);
 
-        // add the fog
-        this.fog = this.add.image
-        (
-            0,
-            0,
-            "still_fog",
-        ).setOrigin(0, 0);
-        // paint it black
-        this.fog.tint = 0x000000;
-
         this.scene.launch("conversation", {file: "scene0A.json"});
 
         menuConfig.fontSize = "28px";
@@ -52,7 +41,7 @@ class Scene0 extends Phaser.Scene
         (
             1100,
             20,
-            "Continue...",
+            "[click to continue]",
             menuConfig
         ).setOrigin(0.5).setInteractive();
 

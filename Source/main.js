@@ -38,7 +38,7 @@ let menuConfig =
 let musicConfig =
 {
     mute: false,
-    volume: 1,
+    volume: 0.25,
     rate: 1,
     detune: 0,
     seek: 0,
@@ -49,7 +49,7 @@ let musicConfig =
 let sfxConfig =
 {
     mute: false,
-    volume: 1,
+    volume: 0.5,
     rate: 1,
     detune: 0,
     seek: 0,
@@ -66,6 +66,8 @@ let colorPalette =
     greyStr: "#f8f8ff",
     greyInt: 0xf8f8ff,
     goldStr: "#ffdf00",
-    goldInt: 0xffdf00
+    goldInt: 0xffdf00,
+    purpleStr: "#efd5ff",
+    purpleInt: "efd5ff"
 };
 

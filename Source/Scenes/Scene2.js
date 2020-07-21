@@ -27,7 +27,7 @@ class Scene2 extends Phaser.Scene
 
         this.load.image("fog", "Images/Backgrounds/fog.png");
 
-        // load the nightstand spritesheet
+        // load the nightstand image
         this.load.image
         (
             "nightstand",
@@ -113,9 +113,7 @@ class Scene2 extends Phaser.Scene
             "pointerout",
             () =>
             {
-                // this.nightstand.setFrame(0);
                 this.nightstand.tint = 0x2a3439;
-
             }
         );
 

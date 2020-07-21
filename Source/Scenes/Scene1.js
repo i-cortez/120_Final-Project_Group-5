@@ -140,7 +140,7 @@ class Scene1 extends Phaser.Scene
         (
             1100,
             20,
-            "Continue...",
+            "[click to continue]",
             menuConfig
         ).setOrigin(0.5).setInteractive();
 
