@@ -10,33 +10,35 @@
 class Scene1 extends Phaser.Scene
 {
 
-    constructor(sound)
+    constructor()
     {
         super("missingSocks"); // argument is the identifier for this scene
-    }
 
+    }
 
     preload()
     {
+        // remove prior cache if it exists
+        this.cache.json.remove("dialogue");
 
         // set the loader path
         this.load.path = "./Assets/Images/";
+
         // load nightstand
         this.load.image("background_2","Backgrounds/background_2.png");
 
-        // load top drawer spritesheet
-        this.load.image
-        (
-            "drawer_u_0",
-            "Cutouts/drawer_u_0.png",
-            {frameWidth: 645, frameHeight: 320}
-        );
-
-        // load bottom drawer
-        // this.load.image("bottom_d", "Assets/Images/bottomdrawer.png");
-
-        // load the open drawer image
-        this.load.image("top_d_op", "Cutouts/topdrawer_open.png");
+        // load the drawers
+        this.load.image("drawer_u_0","Cutouts/drawer_u_0.png");
+        this.load.image("drawer_b_0","Cutouts/drawer_b_0.png");
+        this.load.image("drawer_u_1","Cutouts/drawer_u_1.png");
+        this.load.image("drawer_b_1","Cutouts/drawer_b_1.png");
+        
+        // load SFX
+        this.load.path = "./Assets/Sounds/";
+        this.load.audio("over_sfx", "notification.wav");
+        this.load.audio("knock_sfx", "knock.wav");
+        this.load.audio("open_sfx", "DrawerOpen.wav");
+        this.load.audio("close_sfx", "DrawerClose.wav")
     }
 
     create()
@@ -50,13 +52,26 @@ class Scene1 extends Phaser.Scene
         ).setOrigin(0, 0);
 
         // add top drawer sprite
-        this.topD = this.add.sprite
+        this.topD = this.add.image
         (
-            320, // horizontal position
+            340, // horizontal position
             240, // vertical position
             "drawer_u_0"
-        ).setOrigin(0, 0).setFrame(0).setInteractive();
-        this.topD.tint = 0x2a3439;
+        ).setOrigin(0, 0).setInteractive();
+        this.topD.tint = colorPalette.blueInt;
+
+        // add top drawer sprite
+        this.bottomD = this.add.image
+        (
+            414, // horizontal position
+            520, // vertical position
+            "drawer_b_0"
+        ).setOrigin(0, 0).setInteractive();
+        this.bottomD.tint = colorPalette.blueInt;
+
+        this.overSFX = this.sound.add("over_sfx");
+        this.knockSFX = this.sound.add("knock_sfx");
+        this.openSFX = this.sound.add("open_sfx");
 
         // check for pointer over object
         this.topD.on
@@ -65,7 +80,8 @@ class Scene1 extends Phaser.Scene
             () =>
             {
                 // this.topD.setFrame(1);
-                this.topD.tint = 0xffdf00;
+                this.topD.tint = colorPalette.goldInt;
+                this.overSFX.play(sfxConfig);
                 console.log("pointerover");
             }
         );
@@ -77,7 +93,7 @@ class Scene1 extends Phaser.Scene
             () =>
             {
                 // this.topD.setFrame(0);
-                this.topD.tint = 0x2a3439;
+                this.topD.tint = colorPalette.blueInt;
                 console.log("pointerout");
             }
         );
@@ -87,10 +103,27 @@ class Scene1 extends Phaser.Scene
             "pointerdown",
             () =>
             {
-                // this.topD.setFrame(0);
+                console.log("pointerdown");
                 this.topD.clearTint();
-                this.topD.removeInteractive(); // disable interactivity
-                this.closeScene(); // displays end of scene text
+                this.topD.removeInteractive();
+                this.knockSFX.play(sfxConfig);
+                this.time.delayedCall
+                (
+                    2000, // time in ms
+                    () =>
+                    {
+                        this.topD.destroy();
+                        this.openSFX.play(sfxConfig);
+                        this.openTopD = this.add.image
+                        (
+                            340, // horizontal position
+                            240, // vertical position
+                            "drawer_u_1"
+                        ).setOrigin(0, 0);
+                    } // callback
+                );
+                this.scene.launch("conversation", {file: "scene1A.json"});
+                this.closeScene();
             }
         );
     }
@@ -99,35 +132,14 @@ class Scene1 extends Phaser.Scene
     {
         // hi
     }
-    
-    getText()
-    {
-        let cutText = "I knock a couple times on the door but there’s no" +
-        "\nsound coming from inside. After waiting a bit my patience ran" +
-        "\nout, I try to open the door and found it unlocked. The place was" +
-        "\na mess, it seemed like someone scrambled to leave or maybe..." +
-        "\nsomeone had tossed the place looking for something and I already" +
-        "\nhad a suspect in mind…";
-
-        return cutText;
-    }
 
     closeScene()
     {
-        menuConfig.fontSize = "20px";
-        this.sceneText = this.add.text
-        (
-            640,
-            200,
-            this.getText(),
-            menuConfig
-        ).setOrigin(0.5);
-
         menuConfig.fontSize = "28px";
         this.continue = this.add.text
         (
-            1120,
-            300,
+            1100,
+            20,
             "Continue...",
             menuConfig
         ).setOrigin(0.5).setInteractive();
@@ -137,7 +149,7 @@ class Scene1 extends Phaser.Scene
             "pointerover",
             () =>
             {
-                menuConfig.color = "#770000";
+                menuConfig.color = colorPalette.redStr;
                 this.continue.setStyle(menuConfig);
             }
         );
@@ -147,7 +159,7 @@ class Scene1 extends Phaser.Scene
             "pointerout",
             () =>
             {
-                menuConfig.color = "#f8f8ff";
+                menuConfig.color = colorPalette.greyStr;
                 this.continue.setStyle(menuConfig);
             }
         );
@@ -157,7 +169,7 @@ class Scene1 extends Phaser.Scene
             "pointerdown",
             () =>
             {
-                menuConfig.color = "#f8f8ff";
+                menuConfig.color = colorPalette.greyStr;
                 this.scene.start("roughWorld");
                 this.sound.stopByKey("menuTune");
             }

@@ -17,12 +17,12 @@ class Scene0 extends Phaser.Scene
 
     preload()
     {
-        // set the loader path
+        // set the loader path for images
         this.load.path = "./Assets/Images/Backgrounds/";
-        // preload the background image with the load image function
-        this.load.image("s0Background", "background_1.png");
-        // load the fog image
-        this.load.image("fog", "fog.png");
+
+        // preload the background images
+        this.load.image("background_1", "background_1.png");
+        this.load.image("still_fog", "still_fog.png");
     }
 
     create()
@@ -32,33 +32,26 @@ class Scene0 extends Phaser.Scene
         (
             0, // horizontal position
             0, // vertical position
-            "s0Background" // texture to render with
+            "background_1" // texture to render with
         ).setOrigin(0, 0);
 
         // add the fog
-        this.fog = this.add.tileSprite
+        this.fog = this.add.image
         (
             0,
             0,
-            config.width,
-            config.height,
-            "fog",
-        ).setOrigin(0, 0).setAlpha(0.6);
+            "still_fog",
+        ).setOrigin(0, 0);
+        // paint it black
+        this.fog.tint = 0x000000;
 
-        menuConfig.fontSize = "20px";
-        this.sceneText = this.add.text
-        (
-            640,
-            360,
-            this.getText(),
-            menuConfig
-        ).setOrigin(0.5);
+        this.scene.launch("conversation", {file: "scene0A.json"});
 
         menuConfig.fontSize = "28px";
         this.continue = this.add.text
         (
-            960,
-            540,
+            1100,
+            20,
             "Continue...",
             menuConfig
         ).setOrigin(0.5).setInteractive();
@@ -97,21 +90,7 @@ class Scene0 extends Phaser.Scene
 
     update()
     {
-        this.fog.tilePositionX -= 1;
-    }
-    
-    getText()
-    {
-        let cutText = "It’s going to be a cold day today...in Cooltown," +
-            "\nCalifornia. I don’t hate the cold but I hate the fog that" +
-            "\nrolls in, it covers the ugliness in the city, it obscures the" +
-            "\ntruth and as a private eye the truth is how I put bread on the" +
-            "\ntable and soda in my cup. But now that I don’t have a case" +
-            "\ntoday I’m seeing my partner, and I don’t mean an investigation" +
-            "\naide. Let’s see if we can reach before the fog makes driving" +
-            "\n a hassle.";
-
-        return cutText;
+        // hi
     }
 }
 

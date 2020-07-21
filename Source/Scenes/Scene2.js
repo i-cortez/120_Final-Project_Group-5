@@ -19,11 +19,13 @@ class Scene2 extends Phaser.Scene
         // set the loader path
         this.load.path = "./Assets/";
 
-        // load the background image
+        // load the background images
         this.load.image
         (
             "background_3","Images/Backgrounds/background_3.png"
         );
+
+        this.load.image("fog", "Images/Backgrounds/fog.png");
 
         // load the nightstand spritesheet
         this.load.image

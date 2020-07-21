@@ -12,8 +12,8 @@ const config =
     type: Phaser.Auto,
     width: 1280,
     height: 720,
-    // debug scene: [Scene1]
-    scene: [Menu, Scene0, Scene1, Scene2, Scene3, Scene4, Scene5]
+    // debug scene: [Scene1, Convo]
+    scene: [Menu, Scene0, Scene1, Scene2, Scene3, Scene4, Scene5, Convo]
 };
 
 // define game
@@ -46,6 +46,17 @@ let musicConfig =
     delay: 0
 };
 
+let sfxConfig =
+{
+    mute: false,
+    volume: 1,
+    rate: 1,
+    detune: 0,
+    seek: 0,
+    loop: false,
+    delay: 0
+};
+
 let colorPalette =
 {
     redStr: "#770000",
@@ -53,31 +64,8 @@ let colorPalette =
     blueStr: "#dadfff",
     blueInt: 0xdadfff,
     greyStr: "#f8f8ff",
-    greyInt: 0xf8f8ff
+    greyInt: 0xf8f8ff,
+    goldStr: "#ffdf00",
+    goldInt: 0xffdf00
 };
 
-// dialogue constants
-DBOX_X = 0; // dialogue box x-pos
-DBOX_Y = 400; // y-pos
-DBOX_FONT = "gem_font"; // font key
-
-TEXT_X = 50; // text w/in dialogue box x-pos
-TEXT_Y = 445; // text w/in dialogue box y-pos
-TEXT_SIZE = 24; // text font size (in pixels)
-TEXT_MAX_WIDTH = 715; // max width of text within box
-
-NEXT_TEXT = "[SPACE]"; // text to display for next prompt
-NEXT_X = 775; // next text prompt x-pos
-NEXT_Y = 574; // next text prompt y-pos
-
-LETTER_TIMER = 10; // num of ms each leter takes to write
-
-// dialogue variables
-dialogueConvo = 0; // current conversation
-dialogueLine = 0; // curent line of conversation
-dialogueSpeaker = null; // current speaker
-dialogueLastSpeaker = null; // former speaker
-dialogueTyping = false; // flag to lock player input while writing
-dialogueText = null; // the text to display
-nextText = null; // player prompt text to continue typing
-eof = false;
