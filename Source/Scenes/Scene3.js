@@ -42,19 +42,19 @@ class Scene3 extends Phaser.Scene
             234,
             "mothfather"
         ).setOrigin(0).setInteractive();
-        this.mothfather.tint = 0x5c544e;
+        this.mothfather.tint = colorPalette.purpleInt;
 
         // interactive events for mothfather
         this.mothfather.on
         (
             "pointerover",
-            () => {this.mothfather.tint = 0xffdf00;}
+            () => {this.mothfather.tint = colorPalette.goldInt;}
         );
 
         this.mothfather.on
         (
             "pointerout",
-            () => {this.mothfather.tint = 0x5c544e;}
+            () => {this.mothfather.tint = colorPalette.purpleInt;}
         );
 
         this.mothfather.on

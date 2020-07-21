@@ -41,7 +41,7 @@ class Scene0 extends Phaser.Scene
         (
             1100,
             20,
-            "[click to continue]",
+            "[click to end scene]",
             menuConfig
         ).setOrigin(0.5).setInteractive();
 
@@ -60,7 +60,7 @@ class Scene0 extends Phaser.Scene
             "pointerout",
             () =>
             {
-                menuConfig.color = "#f8f8ff";
+                menuConfig.color = colorPalette.purpleStr;
                 this.continue.setStyle(menuConfig);
             }
         );
@@ -70,7 +70,7 @@ class Scene0 extends Phaser.Scene
             "pointerdown",
             () =>
             {
-                menuConfig.color = "#f8f8ff";
+                menuConfig.color = colorPalette.purpleStr;
                 this.continue.removeInteractive();
                 this.scene.start("missingSocks");
             }

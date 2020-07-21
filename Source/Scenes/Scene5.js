@@ -16,6 +16,7 @@ class Scene5 extends Phaser.Scene
 
     create()
     {
+        menuConfig.color = colorPalette.greyStr;
         this.continue = this.add.text
         (
             640,

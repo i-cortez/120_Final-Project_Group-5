@@ -59,7 +59,7 @@ class Scene2 extends Phaser.Scene
             160, // vertical position
             "nightstand" // texture to render with 
         ).setOrigin(0, 0).setInteractive();
-        this.nightstand.tint = 0x2a3439;
+        this.nightstand.tint = colorPalette.purpleInt;
 
         this.beary = this.add.image
         (
@@ -67,7 +67,7 @@ class Scene2 extends Phaser.Scene
             549,
             "beary_0"
         ).setOrigin(0);
-        this.beary.tint = 0x54626f;
+        this.beary.tint = colorPalette.purpleInt;
 
         this.car = this.add.image
         (
@@ -75,7 +75,7 @@ class Scene2 extends Phaser.Scene
             615,
             "car_0"
         ).setOrigin(0);
-        this.car.tint = 0x2a3439;
+        this.car.tint = colorPalette.purpleInt;
 
         this.mothdrawer = this.add.image
         (
@@ -83,8 +83,7 @@ class Scene2 extends Phaser.Scene
             192,
             "mothdrawer"
         ).setOrigin(0);
-        this.mothdrawer.tint = 0x5c544e;
-
+        this.mothdrawer.tint = colorPalette.purpleInt;
 
         // add the fog
         this.fog = this.add.tileSprite
@@ -103,7 +102,7 @@ class Scene2 extends Phaser.Scene
             () => 
             {
                 // this.nightstand.setFrame(1);
-                this.nightstand.tint = 0xffdf00;
+                this.nightstand.tint = colorPalette.goldInt;
             }
         );
 
@@ -113,7 +112,7 @@ class Scene2 extends Phaser.Scene
             "pointerout",
             () =>
             {
-                this.nightstand.tint = 0x2a3439;
+                this.nightstand.tint = colorPalette.purpleInt;
             }
         );
 

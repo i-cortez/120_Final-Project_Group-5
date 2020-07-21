@@ -79,12 +79,12 @@ class Menu extends Phaser.Scene
             menuConfig
         ).setOrigin(0.5);
 
-        menuConfig.color = colorPalette.blueStr;
+        menuConfig.color = colorPalette.purpleStr;
         this.startButton = this.add.text
         (
             centerX - 475,
             centerY + 2.5 * vSpace,
-            "START",
+            "[START]",
             menuConfig
         ).setOrigin(0.5);
         this.startButton.setInteractive();
@@ -107,7 +107,7 @@ class Menu extends Phaser.Scene
             "pointerout",
             () =>
             {
-                menuConfig.color = colorPalette.blueStr;
+                menuConfig.color = colorPalette.purpleStr;
                 this.startButton.setStyle(menuConfig);
             }
         );
@@ -133,7 +133,7 @@ class Menu extends Phaser.Scene
             "pointerdown",
             () =>
             {
-                menuConfig.color = colorPalette.greyStr;
+                menuConfig.color = colorPalette.purpleStr;
                 this.startButton.removeInteractive();
                 this.scene.start("firstWords");
             }

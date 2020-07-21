@@ -68,6 +68,6 @@ let colorPalette =
     goldStr: "#ffdf00",
     goldInt: 0xffdf00,
     purpleStr: "#efd5ff",
-    purpleInt: "efd5ff"
+    purpleInt: 0xefd5ff
 };
 

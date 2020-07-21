@@ -58,7 +58,7 @@ class Scene1 extends Phaser.Scene
             240, // vertical position
             "drawer_u_0"
         ).setOrigin(0, 0).setInteractive();
-        this.topD.tint = colorPalette.blueInt;
+        this.topD.tint = colorPalette.purpleInt;
 
         // add top drawer sprite
         this.bottomD = this.add.image
@@ -67,7 +67,7 @@ class Scene1 extends Phaser.Scene
             520, // vertical position
             "drawer_b_0"
         ).setOrigin(0, 0).setInteractive();
-        this.bottomD.tint = colorPalette.blueInt;
+        this.bottomD.tint = colorPalette.purpleInt;
 
         this.overSFX = this.sound.add("over_sfx");
         this.knockSFX = this.sound.add("knock_sfx");
@@ -93,7 +93,7 @@ class Scene1 extends Phaser.Scene
             () =>
             {
                 // this.topD.setFrame(0);
-                this.topD.tint = colorPalette.blueInt;
+                this.topD.tint = colorPalette.purpleInt;
                 console.log("pointerout");
             }
         );
@@ -139,8 +139,8 @@ class Scene1 extends Phaser.Scene
         this.continue = this.add.text
         (
             1100,
-            20,
-            "[click to continue]",
+            40,
+            "[click to end scene]",
             menuConfig
         ).setOrigin(0.5).setInteractive();
 
@@ -159,7 +159,7 @@ class Scene1 extends Phaser.Scene
             "pointerout",
             () =>
             {
-                menuConfig.color = colorPalette.greyStr;
+                menuConfig.color = colorPalette.purpleStr;
                 this.continue.setStyle(menuConfig);
             }
         );
@@ -169,7 +169,7 @@ class Scene1 extends Phaser.Scene
             "pointerdown",
             () =>
             {
-                menuConfig.color = colorPalette.greyStr;
+                menuConfig.color = colorPalette.purpleStr;
                 this.scene.start("roughWorld");
                 this.sound.stopByKey("menuTune");
             }

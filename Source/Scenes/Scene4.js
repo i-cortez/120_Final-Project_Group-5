@@ -42,19 +42,19 @@ class Scene4 extends Phaser.Scene
             81,
             "beary"
         ).setOrigin(0).setInteractive();
-        this.beary.tint = 0x54626f;
+        this.beary.tint = colorPalette.purpleInt;
 
         // interactive events for officer beary
         this.beary.on
         (
             "pointerover",
-            () => {this.beary.tint = 0xffdf00;}
+            () => {this.beary.tint = colorPalette.goldInt;}
         );
 
         this.beary.on
         (
             "pointerout",
-            () => {this.beary.tint = 0x54626f;}
+            () => {this.beary.tint = colorPalette.purpleInt;}
         );
 
         this.beary.on
