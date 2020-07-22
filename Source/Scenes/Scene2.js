@@ -15,6 +15,16 @@ class Scene2 extends Phaser.Scene
         
         // the dialogue variables
         this.dialogueA = false;
+        this.dialogueB = false;
+        this.dialogueC = false;
+        this.dialogueD = false;
+
+        // the scene logic variables
+        this.lampVisit = false;
+        this.mothVisit0 = false;
+        this.mothVisit1 = false;
+        this.bearVisit = false;
+        this.carVisit = false;
     }
 
     preload()
@@ -144,31 +154,18 @@ class Scene2 extends Phaser.Scene
         this.mothdrawer.on
         (
             "pointerdown",
-            () => {console.log("mothdrawer");}
+            () =>
+            {
+                if(this.lampVisit) {console.log("mothfia1");}
+                else if(this.bearVisit) {console.log("mothfia2");}
+                else
+                {
+                    this.scene.launch("conversation", {file: "scene2B.json"});
+                    this.dialogueB = true;
+                }
+            }
         );
         //-end mothdrawer-------------------------------------------------------
-
-        // check for pointer over object
-        //-car------------------------------------------------------------------
-        this.car.on
-        (
-            "pointerover",
-            () => {this.car.tint = colorPalette.goldInt;}
-        );
-
-        // check for pointer leaving object
-        this.car.on
-        (
-            "pointerout",
-            () => {this.car.tint = colorPalette.purpleInt;}
-        );
-
-        this.car.on
-        (
-            "pointerdown",
-            () => {console.log("car");}
-        );
-        //-end car -------------------------------------------------------------
 
         // check for pointer
         //-beary----------------------------------------------------------------
@@ -188,9 +185,47 @@ class Scene2 extends Phaser.Scene
         this.beary.on
         (
             "pointerdown",
-            () => {console.log("beary");}
+            () =>
+            {
+                if(this.mothVisit0) {console.log("beary");}
+                else
+                {
+                    this.scene.launch("conversation", {file: "scene2C.json"});
+                    this.dialogueC = true;
+                }
+            }
         );
         //-end beary------------------------------------------------------------
+
+        // check for pointer over object
+        //-car------------------------------------------------------------------
+        this.car.on
+        (
+            "pointerover",
+            () => {this.car.tint = colorPalette.goldInt;}
+        );
+
+        // check for pointer leaving object
+        this.car.on
+        (
+            "pointerout",
+            () => {this.car.tint = colorPalette.purpleInt;}
+        );
+
+        this.car.on
+        (
+            "pointerdown",
+            () =>
+            {
+                if(this.mothVisit1) {console.log("confrontation");}
+                else
+                {
+                    this.scene.launch("conversation", {file: "scene2D.json"});
+                    this.dialogueD = true;
+                }
+            }
+        );
+        //-end car -------------------------------------------------------------
 
         this.cityMusic = this.sound.add("fog_city");
         this.cityMusic.play(musicConfig);
@@ -207,14 +242,42 @@ class Scene2 extends Phaser.Scene
             this.dialogueA = false;
             this.suspendScene();
         }
+
+        if(this.dialogueB && dialogueComplete)
+        {
+            console.log("refresh scene dialogue");
+            this.dialogueB = false;
+            this.refreshDialogue();
+        }
+
+        if(this.dialogueC && dialogueComplete)
+        {
+            console.log("refresh scene dialogue");
+            this.dialogueC = false;
+            this.refreshDialogue();
+        }
+
+        if(this.dialogueD && dialogueComplete)
+        {
+            console.log("refresh scene dialogue");
+            this.dialogueD = false;
+            this.refreshDialogue();
+        }
+
     }
 
     suspendScene()
     {
         dialogueComplete = false;
+        this.lampVisit = true;
         this.sound.stopByKey("fog_city");
         this.scene.sleep();
         this.scene.launch("lamplord");
+    }
+
+    refreshDialogue()
+    {
+        dialogueComplete = false;
     }
 }
 

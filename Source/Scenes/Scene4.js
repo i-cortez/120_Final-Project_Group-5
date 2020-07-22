@@ -1,10 +1,10 @@
-// Scene3.js
+// Scene4.js
 //
 // Ismael Cortez
 // 7-10-2020
 // Group 5 Game
 //
-// This file contains the code for Scene 3: The Mothfia
+// This file contains the code for Scene 4: The Mothfia
 //
 
 class Scene4 extends Phaser.Scene

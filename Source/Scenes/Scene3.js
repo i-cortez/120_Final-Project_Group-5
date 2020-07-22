@@ -68,7 +68,6 @@ class Scene3 extends Phaser.Scene
         this.scene.stop();
         this.scene.wake("roughWorld");
         this.sound.play("fog_city", musicConfig);
-        
     }
 }
 
