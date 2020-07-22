@@ -14,6 +14,9 @@ class Scene1 extends Phaser.Scene
     {
         super("missingSocks"); // argument is the identifier for this scene
 
+        // scene dialogue variables
+        this.dialogue0 = false;
+        this.finalDialogue = false;
     }
 
     preload()
@@ -120,60 +123,103 @@ class Scene1 extends Phaser.Scene
                             240, // vertical position
                             "drawer_u_1"
                         ).setOrigin(0, 0);
+                        this.scene.launch
+                        (
+                            "conversation",
+                            {file: "scene1A.json"}
+                        );
                     } // callback
                 );
-                this.scene.launch("conversation", {file: "scene1A.json"});
-                this.closeScene();
+                this.finalDialogue = true;
+            }
+        );
+
+        // check for pointer over object
+        this.bottomD.on
+        (
+            "pointerover",
+            () =>
+            {
+                this.bottomD.tint = colorPalette.goldInt;
+                this.overSFX.play(sfxConfig);
+                console.log("pointerover");
+            }
+        );
+
+        // check for pointer leaving object
+        this.bottomD.on
+        (
+            "pointerout",
+            () =>
+            {
+                this.bottomD.tint = colorPalette.purpleInt;
+                console.log("pointerout");
+            }
+        );
+
+        this.bottomD.on
+        (
+            "pointerdown",
+            () =>
+            {
+                console.log("pointerdown");
+                this.bottomD.clearTint();
+                this.bottomD.removeInteractive();
+                this.knockSFX.play(sfxConfig);
+                this.time.delayedCall
+                (
+                    2000, // time in ms
+                    () =>
+                    {
+                        this.openSFX.play(sfxConfig);
+                        this.bottomD.alpha = 0;
+                        this.openBottomD = this.add.image
+                        (
+                            414, // horizontal position
+                            520, // vertical position
+                            "drawer_b_1"
+                        ).setOrigin(0, 0);
+                        this.scene.launch
+                        (
+                            "conversation",
+                            {file: "scene1B.json"}
+                        );
+                    } // callback
+                );
+                this.dialogue0 = true;
             }
         );
     }
 
     update()
     {
-        // hi
+        if(this.finalDialogue && dialogueComplete)
+        {
+            console.log("ending scene");
+            this.finalDialogue = false;
+            this.closeScene();
+        }
+
+        if(this.dialogue0 && dialogueComplete)
+        {
+            console.log("refresh bottom drawer");
+            this.dialogue0 = false;
+            this.refreshBottomD();
+        }
+    }
+
+    refreshBottomD()
+    {
+        dialogueComplete = false;
+        this.openBottomD.destroy();
+        this.bottomD.alpha = 1;
     }
 
     closeScene()
     {
-        menuConfig.fontSize = "28px";
-        this.continue = this.add.text
-        (
-            1100,
-            40,
-            "[click to end scene]",
-            menuConfig
-        ).setOrigin(0.5).setInteractive();
-
-        this.continue.on
-        (
-            "pointerover",
-            () =>
-            {
-                menuConfig.color = colorPalette.redStr;
-                this.continue.setStyle(menuConfig);
-            }
-        );
-
-        this.continue.on
-        (
-            "pointerout",
-            () =>
-            {
-                menuConfig.color = colorPalette.purpleStr;
-                this.continue.setStyle(menuConfig);
-            }
-        );
-
-        this.continue.on
-        (
-            "pointerdown",
-            () =>
-            {
-                menuConfig.color = colorPalette.purpleStr;
-                this.scene.start("roughWorld");
-                this.sound.stopByKey("menuTune");
-            }
-        );
+        dialogueComplete = false;
+        this.scene.start("roughWorld");
+        this.sound.stopByKey("menuTune");
     }
 }
 

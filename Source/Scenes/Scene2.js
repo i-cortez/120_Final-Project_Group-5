@@ -12,6 +12,9 @@ class Scene2 extends Phaser.Scene
     constructor()
     {
         super("roughWorld"); // argument is the identifier for this scene
+        
+        // the dialogue variables
+        this.dialogueA = false;
     }
 
     preload()
@@ -66,7 +69,7 @@ class Scene2 extends Phaser.Scene
             167,
             549,
             "beary_0"
-        ).setOrigin(0);
+        ).setOrigin(0).setInteractive();
         this.beary.tint = colorPalette.purpleInt;
 
         this.car = this.add.image
@@ -74,7 +77,7 @@ class Scene2 extends Phaser.Scene
             1150,
             615,
             "car_0"
-        ).setOrigin(0);
+        ).setOrigin(0).setInteractive();
         this.car.tint = colorPalette.purpleInt;
 
         this.mothdrawer = this.add.image
@@ -82,7 +85,7 @@ class Scene2 extends Phaser.Scene
             479,
             192,
             "mothdrawer"
-        ).setOrigin(0);
+        ).setOrigin(0).setInteractive();
         this.mothdrawer.tint = colorPalette.purpleInt;
 
         // add the fog
@@ -96,24 +99,18 @@ class Scene2 extends Phaser.Scene
         ).setOrigin(0, 0).setAlpha(0.6);
 
         // check for pointer over object
+        //-nightstand-----------------------------------------------------------
         this.nightstand.on
         (
             "pointerover",
-            () => 
-            {
-                // this.nightstand.setFrame(1);
-                this.nightstand.tint = colorPalette.goldInt;
-            }
+            () => {this.nightstand.tint = colorPalette.goldInt;}
         );
 
         // check for pointer leaving object
         this.nightstand.on
         (
             "pointerout",
-            () =>
-            {
-                this.nightstand.tint = colorPalette.purpleInt;
-            }
+            () => {this.nightstand.tint = colorPalette.purpleInt;}
         );
 
         this.nightstand.on
@@ -121,11 +118,79 @@ class Scene2 extends Phaser.Scene
             "pointerdown",
             () =>
             {
+                this.nightstand.clearTint();
                 this.nightstand.removeInteractive();
-                this.sound.stopByKey("fog_city");
-                this.scene.start("mothfia");
+                this.scene.launch("conversation", {file: "scene2A.json"});
+                this.dialogueA = true;
             }
         );
+        //-end nightstand-------------------------------------------------------
+
+        // check for pointer over object
+        //-mothdrawer-----------------------------------------------------------
+        this.mothdrawer.on
+        (
+            "pointerover",
+            () => {this.mothdrawer.tint = colorPalette.goldInt;}
+        );
+
+        // check for pointer leaving object
+        this.mothdrawer.on
+        (
+            "pointerout",
+            () => {this.mothdrawer.tint = colorPalette.purpleInt;}
+        );
+
+        this.mothdrawer.on
+        (
+            "pointerdown",
+            () => {console.log("mothdrawer");}
+        );
+        //-end mothdrawer-------------------------------------------------------
+
+        // check for pointer over object
+        //-car------------------------------------------------------------------
+        this.car.on
+        (
+            "pointerover",
+            () => {this.car.tint = colorPalette.goldInt;}
+        );
+
+        // check for pointer leaving object
+        this.car.on
+        (
+            "pointerout",
+            () => {this.car.tint = colorPalette.purpleInt;}
+        );
+
+        this.car.on
+        (
+            "pointerdown",
+            () => {console.log("car");}
+        );
+        //-end car -------------------------------------------------------------
+
+        // check for pointer
+        //-beary----------------------------------------------------------------
+        this.beary.on
+        (
+            "pointerover",
+            () => {this.beary.tint = colorPalette.goldInt;}
+        );
+
+        // check for pointer leaving object
+        this.beary.on
+        (
+            "pointerout",
+            () => {this.beary.tint = colorPalette.purpleInt;}
+        );
+
+        this.beary.on
+        (
+            "pointerdown",
+            () => {console.log("beary");}
+        );
+        //-end beary------------------------------------------------------------
 
         this.cityMusic = this.sound.add("fog_city");
         this.cityMusic.play(musicConfig);
@@ -135,6 +200,21 @@ class Scene2 extends Phaser.Scene
     {
         // move the fog across the screen
         this.fog.tilePositionX -= 1;
+
+        if(this.dialogueA && dialogueComplete)
+        {
+            console.log("pause scene");
+            this.dialogueA = false;
+            this.suspendScene();
+        }
+    }
+
+    suspendScene()
+    {
+        dialogueComplete = false;
+        this.sound.stopByKey("fog_city");
+        this.scene.sleep();
+        this.scene.launch("lamplord");
     }
 }
 

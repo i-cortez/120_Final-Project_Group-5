@@ -13,7 +13,7 @@ const config =
     width: 1280,
     height: 720,
     // debug scene: [Scene1, Convo]
-    scene: [Menu, Scene0, Scene1, Scene2, Scene3, Scene4, Scene5, Convo]
+    scene: [Menu, Scene0, Scene1, Scene2, Scene3, Scene4, Scene5, Scene6, Convo]
 };
 
 // define game
@@ -38,7 +38,7 @@ let menuConfig =
 let musicConfig =
 {
     mute: false,
-    volume: 0.25,
+    volume: 0.3,
     rate: 1,
     detune: 0,
     seek: 0,
@@ -49,7 +49,7 @@ let musicConfig =
 let sfxConfig =
 {
     mute: false,
-    volume: 0.5,
+    volume: 0.8,
     rate: 1,
     detune: 0,
     seek: 0,
@@ -70,4 +70,6 @@ let colorPalette =
     purpleStr: "#efd5ff",
     purpleInt: 0xefd5ff
 };
+
+let dialogueComplete = false;
 

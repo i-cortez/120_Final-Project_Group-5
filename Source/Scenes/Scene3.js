@@ -4,26 +4,27 @@
 // 7-10-2020
 // Group 5 Game
 //
-// This file contains the code for Scene 3: The Mothfia
+// This file contains the code for Scene 3: The Lamplord
+// This scene uses dialogue system from Convo.js
 //
 
 class Scene3 extends Phaser.Scene
 {
+
     constructor()
     {
-        super("mothfia");
+        super("lamplord"); // argument is the identifier for this scene
+
+        this.finalDialogue = false;
     }
 
     preload()
     {
-        // set the loader path
-        this.load.path = "./Assets/Images/";
+        // set the loader path for images
+        this.load.path = "./Assets/Images/Backgrounds/";
 
-        // load the background image
-        this.load.image("s3Background","Backgrounds/background_4.png");
-
-        // load the mothfather
-        this.load.image("mothfather", "Characters/mothfather_0.png");
+        // preload the background images
+        this.load.image("background_4", "background_4.png");
     }
 
     create()
@@ -33,40 +34,41 @@ class Scene3 extends Phaser.Scene
         (
             0, // horizontal position
             0, // vertical position
-            "s3Background" // texture to render with
+            "background_4" // texture to render with
         ).setOrigin(0, 0);
 
-        this.mothfather = this.add.image
-        (
-            13,
-            234,
-            "mothfather"
-        ).setOrigin(0).setInteractive();
-        this.mothfather.tint = colorPalette.purpleInt;
+        this.sound.play("menuTune", musicConfig);
 
-        // interactive events for mothfather
-        this.mothfather.on
+        this.time.delayedCall
         (
-            "pointerover",
-            () => {this.mothfather.tint = colorPalette.goldInt;}
-        );
-
-        this.mothfather.on
-        (
-            "pointerout",
-            () => {this.mothfather.tint = colorPalette.purpleInt;}
-        );
-
-        this.mothfather.on
-        (
-            "pointerdown",
-            () => 
+            800,
+            () =>
             {
-                this.mothfather.clearTint();
-                this.mothfather.removeInteractive();
-                this.scene.start("theDiner");
+                this.scene.launch("conversation", {file: "scene3A.json"});
+                this.finalDialogue = true;
             }
         );
+
+    }
+
+    update()
+    {
+        if(this.finalDialogue && dialogueComplete)
+        {
+            console.log("ending scene");
+            this.finalDialogue = false;
+            this.closeScene();
+        }
+    }
+
+    closeScene()
+    {
+        dialogueComplete = false;
+        this.sound.stopByKey("menuTune");
+        this.scene.stop();
+        this.scene.wake("roughWorld");
+        this.sound.play("fog_city", musicConfig);
+        
     }
 }
 

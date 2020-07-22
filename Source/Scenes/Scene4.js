@@ -1,17 +1,17 @@
-// Scene4.js
+// Scene3.js
 //
 // Ismael Cortez
 // 7-10-2020
 // Group 5 Game
 //
-// This file contains the code for Scene 3: Officer Beary
+// This file contains the code for Scene 3: The Mothfia
 //
 
 class Scene4 extends Phaser.Scene
 {
     constructor()
     {
-        super("theDiner");
+        super("mothfia");
     }
 
     preload()
@@ -20,10 +20,10 @@ class Scene4 extends Phaser.Scene
         this.load.path = "./Assets/Images/";
 
         // load the background image
-        this.load.image("s4Background","Backgrounds/background_5.png");
+        this.load.image("background_4","Backgrounds/background_4.png");
 
-        // load officer beary
-        this.load.image("beary", "Characters/beary_1.png");
+        // load the mothfather
+        this.load.image("mothfather", "Characters/mothfather_0.png");
     }
 
     create()
@@ -33,38 +33,38 @@ class Scene4 extends Phaser.Scene
         (
             0, // horizontal position
             0, // vertical position
-            "s4Background" // texture to render with
+            "s3Background" // texture to render with
         ).setOrigin(0, 0);
 
-        this.beary = this.add.image
+        this.mothfather = this.add.image
         (
-            192,
-            81,
-            "beary"
+            13,
+            234,
+            "mothfather"
         ).setOrigin(0).setInteractive();
-        this.beary.tint = colorPalette.purpleInt;
+        this.mothfather.tint = colorPalette.purpleInt;
 
-        // interactive events for officer beary
-        this.beary.on
+        // interactive events for mothfather
+        this.mothfather.on
         (
             "pointerover",
-            () => {this.beary.tint = colorPalette.goldInt;}
+            () => {this.mothfather.tint = colorPalette.goldInt;}
         );
 
-        this.beary.on
+        this.mothfather.on
         (
             "pointerout",
-            () => {this.beary.tint = colorPalette.purpleInt;}
+            () => {this.mothfather.tint = colorPalette.purpleInt;}
         );
 
-        this.beary.on
+        this.mothfather.on
         (
             "pointerdown",
             () => 
             {
-                this.beary.clearTint();
-                this.beary.removeInteractive();
-                this.scene.start("intermission");
+                this.mothfather.clearTint();
+                this.mothfather.removeInteractive();
+                this.scene.start("theDiner");
             }
         );
     }

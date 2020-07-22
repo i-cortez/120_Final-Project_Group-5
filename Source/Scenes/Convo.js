@@ -41,6 +41,7 @@ class Convo extends Phaser.Scene
     init(data)
     {
         this.file = data.file;
+        console.log(this.file);
     }
 
     preload()
@@ -114,7 +115,8 @@ class Convo extends Phaser.Scene
         if(this.eof)
         {
             this.resetScene();
-            this.scene.stop("conversation");
+            dialogueComplete = true;
+            this.scene.stop();
         }
     }
 
@@ -196,6 +198,7 @@ class Convo extends Phaser.Scene
         this.dialogueLine++;
         this.dialogueLastSpeaker = this.dialogueSpeaker;
     }
+    
     resetScene()
     {
         // reset the dialogue variables
@@ -207,6 +210,7 @@ class Convo extends Phaser.Scene
         this.dialogueText = null; // the text to display
         this.nextText = null; // player prompt text to continue typing
         this.eof = false;
+        this.cache.json.remove("dialogue"); // remove cache immediately
     }
 }
 

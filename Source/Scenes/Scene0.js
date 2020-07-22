@@ -5,6 +5,7 @@
 // Group 5 Game
 //
 // This file contains the code for Scene 0: Rough and Tumble World Monologue
+// This scene uses plays dialogue from Convo.js
 //
 
 class Scene0 extends Phaser.Scene
@@ -13,6 +14,8 @@ class Scene0 extends Phaser.Scene
     constructor()
     {
         super("firstWords"); // argument is the identifier for this scene
+
+        this.finalDialogue = false;
     }
 
     preload()
@@ -34,52 +37,32 @@ class Scene0 extends Phaser.Scene
             "background_1" // texture to render with
         ).setOrigin(0, 0);
 
-        this.scene.launch("conversation", {file: "scene0A.json"});
-
-        menuConfig.fontSize = "28px";
-        this.continue = this.add.text
+        this.time.delayedCall
         (
-            1100,
-            20,
-            "[click to end scene]",
-            menuConfig
-        ).setOrigin(0.5).setInteractive();
-
-        this.continue.on
-        (
-            "pointerover",
+            500,
             () =>
             {
-                menuConfig.color = "#770000";
-                this.continue.setStyle(menuConfig);
-            }
-        );
-
-        this.continue.on
-        (
-            "pointerout",
-            () =>
-            {
-                menuConfig.color = colorPalette.purpleStr;
-                this.continue.setStyle(menuConfig);
-            }
-        );
-
-        this.continue.on
-        (
-            "pointerdown",
-            () =>
-            {
-                menuConfig.color = colorPalette.purpleStr;
-                this.continue.removeInteractive();
-                this.scene.start("missingSocks");
+                this.scene.launch("conversation", {file: "scene0A.json"});
+                this.finalDialogue = true;
             }
         );
     }
 
     update()
     {
-        // hi
+        if(this.finalDialogue && dialogueComplete)
+        {
+            console.log("ending scene");
+            this.finalDialogue = false;
+            this.closeScene();
+        }
+    }
+
+    closeScene()
+    {
+        menuConfig.color = colorPalette.purpleStr;
+        dialogueComplete = false;
+        this.scene.start("missingSocks");
     }
 }
 
