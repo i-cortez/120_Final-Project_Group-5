@@ -14,6 +14,8 @@ class Convo extends Phaser.Scene
         super("conversation"); // argument is the identifier for this scene
 
         // dialogue constants
+        this.ONSCREEN_X = 0;
+        this.ONSCREEN_Y = 360;
         this.FONT = "gem_font"; // font key
 
         this.TEXT_X = 640; // text w/in dialogue box x-pos
@@ -27,6 +29,9 @@ class Convo extends Phaser.Scene
 
         this.LETTER_TIMER = 10; // num of ms each leter takes to write
 
+        this.OFFSCREEN_X = -500;
+        this.OFFSCREEN_Y = 1000;
+
         // dialogue variables
         this.dialogueConvo = 0; // current conversation
         this.dialogueLine = 0; // curent line of conversation
@@ -36,6 +41,12 @@ class Convo extends Phaser.Scene
         this.dialogueText = null; // the text to display
         this.nextText = null; // player prompt text to continue typing
         this.eof = false;
+
+        // character variables
+        this.kid = null;
+        this.lamp = null;
+
+        this.tweenDuration = 500;
     }
 
     init(data)
@@ -59,6 +70,11 @@ class Convo extends Phaser.Scene
 
         // preload the background images
         this.load.image("still_fog", "still_fog.png");
+
+        // preload the characters
+        this.load.path = "./Assets/Images/Characters/";
+        this.load.image("kid", "kid_0.png");
+        this.load.image("lamp", "elephant_0.png");
     }
 
     create()
@@ -95,6 +111,21 @@ class Convo extends Phaser.Scene
             this.TEXT_SIZE
         );
 
+        // ready the character images offscreen
+        this.kid = this.add.sprite
+        (
+            this.OFFSCREEN_X,
+            this.ONSCREEN_Y,
+            "kid"
+        ).setOrigin(0.5);
+        
+        this.lamp = this.add.sprite
+        (
+            this.OFFSCREEN_X,
+            this.ONSCREEN_Y,
+            "lamp"
+        ).setOrigin(0.5);
+
         this.typeText();
     }
 
@@ -129,6 +160,16 @@ class Convo extends Phaser.Scene
         this.dialogueText.text = "";
         this.nextText.text = "";
 
+        /*
+            Conversation data structure:
+            - each array within the main JSON array is a conversation
+            - each object within a conversation is a line
+            - each line can have 3 properties
+                1) a speaker
+                2) the dialoge text
+                3) an optional flag indicating if the speaker is new
+        */
+
         if(this.dialogueLine > this.dialogue[this.dialogueConvo].length - 1)
         {
             this.dialogueLine = 0;
@@ -143,60 +184,114 @@ class Convo extends Phaser.Scene
             // simply exit the last speaker and remove the dialog box
             // can also build other logic to change game states here
             console.log("End of conversations");
+
+            // tween out priour speaker's image
+            if(this.dialogueLastSpeaker)
+            {
+                this.tweens.add
+                (
+                    {
+                        targets: this[this.dialogueLastSpeaker],
+                        x: this.OFFSCREEN_X,
+                        duration: this.tweenDuration,
+                        ease: "Linear"
+                    }
+                );
+            }
             this.eof = true;
             return;
         }
+        else
+        {
+            // if not, set current speaker
+            this.dialogueSpeaker =
+            this.dialogue[this.dialogueConvo][this.dialogueLine]["speaker"];
 
-        // build dialog (concatenate speaker + line of text)
-        this.dialogueLines =
-        this.dialogue[this.dialogueConvo][this.dialogueLine]["speaker"]
-        .toUpperCase() +
-        ": " + this.dialogue[this.dialogueConvo][this.dialogueLine]["dialogue"];
-
-        // create a timer to iterate through each letter in the dialog
-        let currentChar = 0;
-        this.textTimer = this.time.addEvent
-        (
+            // check if there's a new speaker (for exit/enter animations)
+            if(this.dialogue[this.dialogueConvo][this.dialogueLine]["newSpeaker"])
             {
-                delay: this.LETTER_TIMER,
-                repeat: this.dialogueLines.length - 1,
-                callback: () =>
+                // tween out prior speaker's image
+                if(this.dialogueLastSpeaker)
                 {
-                    // concatenate next letter from dialogLines
-                    this.dialogueText.text += this.dialogueLines[currentChar];
-                    // advance character position
-                    currentChar++;
+                    this.tweens.add
+                    (
+                        {
+                            targets: this[this.dialogueLastSpeaker],
+                            x: this.OFFSCREEN_X,
+                            duration: this.tweenDuration,
+                            ease: "Linear"
+                        }
+                    );
+                }
 
-                    // check if timer has exhausetd its repeats
-                    // necessary since Phaser 3 no longer seems to have an
-                    // onComplete event
-                    if(this.textTimer.getRepeatCount() == 0)
+                // tween in new speaker's image
+                this.tweens.add
+                (
                     {
-                        // show prompt for more text
-                        this.nextText = this.add.bitmapText
-                        (
-                            this.NEXT_X,
-                            this.NEXT_Y,
-                            this.FONT,
-                            this.NEXT_TEXT,
-                            this.TEXT_SIZE
-                        ).setOrigin(1);
-                        
-                        // unlock input
-                        this.dialogueTyping = false;
-                        // destroy timer
-                        this.textTimer.destroy();
+                        targets: this[this.dialogueSpeaker],
+                        x: this.ONSCREEN_X + 320,
+                        duration: this.tweenDuration,
+                        ease: "Linear"
                     }
-                },
-                callbackScope: this // keep Scene context
+                );
             }
-        );
-        // set bounds on dialogue
-        this.dialogueText.maxWidth = this.TEXT_MAX_WIDTH;
-
-        // increment dialog line
-        this.dialogueLine++;
-        this.dialogueLastSpeaker = this.dialogueSpeaker;
+            
+            // build dialog (concatenate speaker + line of text)
+            this.dialogueLines =
+            this.dialogue[this.dialogueConvo][this.dialogueLine]["speaker"]
+            .toUpperCase() +
+            ": " + 
+            this.dialogue[this.dialogueConvo][this.dialogueLine]["dialogue"];
+            
+            // create a timer to iterate through each letter in the dialog
+            let currentChar = 0;
+            this.textTimer = this.time.addEvent
+            (
+                {
+                    delay: this.LETTER_TIMER,
+                    repeat: this.dialogueLines.length - 1,
+                    callback: () =>
+                    {
+                        // concatenate next letter from dialogLines
+                        this.dialogueText.text +=
+                        this.dialogueLines[currentChar];
+                        // advance character position
+                        currentChar++;
+                        
+                        // check if timer has exhausetd its repeats
+                        // necessary since Phaser 3 no longer seems to have an
+                        // onComplete event
+                        
+                        if(this.textTimer.getRepeatCount() == 0)
+                        {
+                            // show prompt for more text
+                            this.nextText = this.add.bitmapText
+                            (
+                                this.NEXT_X,
+                                this.NEXT_Y,
+                                this.FONT,
+                                this.NEXT_TEXT,
+                                this.TEXT_SIZE
+                            ).setOrigin(1);
+                            
+                            // unlock input
+                            this.dialogueTyping = false;
+                            
+                            // destroy timer
+                            this.textTimer.destroy();
+                        }
+                    },
+                    callbackScope: this // keep Scene context
+                }
+            );
+            
+            // set bounds on dialogue
+            this.dialogueText.maxWidth = this.TEXT_MAX_WIDTH;
+            
+            // increment dialog line
+            this.dialogueLine++;
+            this.dialogueLastSpeaker = this.dialogueSpeaker;
+        }
     }
     
     resetScene()
