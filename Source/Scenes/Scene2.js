@@ -18,6 +18,8 @@ class Scene2 extends Phaser.Scene
         this.dialogueB = false;
         this.dialogueC = false;
         this.dialogueD = false;
+        this.dialogueE = false;
+        this.dialogueF = false;
 
         // the scene logic variables
         this.lampVisit = false;
@@ -156,8 +158,12 @@ class Scene2 extends Phaser.Scene
             "pointerdown",
             () =>
             {
-                if(this.lampVisit) {console.log("mothfia1");}
-                else if(this.bearVisit) {console.log("mothfia2");}
+                if(this.lampVisit && !this.mothVisit0)
+                {
+                    this.scene.launch("conversation", {file: "scene2E.json"});
+                    this.dialogueE = true;
+                }
+                else if(this.bearVisit) {this.scene.start("intermission");}
                 else
                 {
                     this.scene.launch("conversation", {file: "scene2B.json"});
@@ -187,7 +193,11 @@ class Scene2 extends Phaser.Scene
             "pointerdown",
             () =>
             {
-                if(this.mothVisit0) {console.log("beary");}
+                if(this.mothVisit0 && !this.bearVisit)
+                {
+                    this.scene.launch("conversation", {file: "scene2F.json"});
+                    this.dialogueF = true;
+                }
                 else
                 {
                     this.scene.launch("conversation", {file: "scene2C.json"});
@@ -264,6 +274,20 @@ class Scene2 extends Phaser.Scene
             this.refreshDialogue();
         }
 
+        if(this.dialogueE && dialogueComplete)
+        {
+            console.log("pause scene");
+            this.dialogueE = false;
+            this.initMothScene();
+        }
+
+        if(this.dialogueF && dialogueComplete)
+        {
+            console.log("pause scene");
+            this.dialogueF = false;
+            this.initBearScene();
+        }
+
     }
 
     suspendScene()
@@ -273,6 +297,24 @@ class Scene2 extends Phaser.Scene
         this.sound.stopByKey("fog_city");
         this.scene.sleep();
         this.scene.launch("lamplord");
+    }
+
+    initMothScene()
+    {
+        dialogueComplete = false;
+        this.mothVisit0 = true;
+        this.sound.stopByKey("fog_city");
+        this.scene.sleep();
+        this.scene.launch("mothfia");
+    }
+
+    initBearScene()
+    {
+        dialogueComplete = false;
+        this.bearVisit = true;
+        this.sound.stopByKey("fog_city");
+        this.scene.sleep();
+        this.scene.launch("theDiner");
     }
 
     refreshDialogue()

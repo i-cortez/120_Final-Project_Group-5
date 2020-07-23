@@ -45,6 +45,8 @@ class Convo extends Phaser.Scene
         // character variables
         this.kid = null;
         this.lamp = null;
+        this.moth = null;
+        this.bear = null;
 
         this.tweenDuration = 500;
     }
@@ -75,6 +77,8 @@ class Convo extends Phaser.Scene
         this.load.path = "./Assets/Images/Characters/";
         this.load.image("kid", "kid_0.png");
         this.load.image("lamp", "elephant_0.png");
+        this.load.image("moth", "mothfather_1.png");
+        this.load.image("bear", "beary_2.png");
     }
 
     create()
@@ -124,6 +128,20 @@ class Convo extends Phaser.Scene
             this.OFFSCREEN_X,
             this.ONSCREEN_Y,
             "lamp"
+        ).setOrigin(0.5);
+
+        this.moth = this.add.sprite
+        (
+            this.OFFSCREEN_X,
+            this.ONSCREEN_Y,
+            "moth"
+        ).setOrigin(0.5);
+
+        this.bear = this.add.sprite
+        (
+            this.OFFSCREEN_X,
+            this.ONSCREEN_Y,
+            "bear"
         ).setOrigin(0.5);
 
         this.typeText();

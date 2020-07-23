@@ -1,0 +1,59 @@
+[
+    [
+        {
+            "speaker": "kid",
+            "dialogue": "(I entered the cafe and walked past the waitress and right up to Teddy). Teddy, I need help with a case.",
+            "newSpeaker": "false"
+        },
+        {
+            "speaker": "kid",
+            "dialogue": "(Theadore looks up at me, he must have seen the panic in my eyes.)",
+            "newSpeaker": "true"
+        },
+        {
+            "speaker": "bear",
+            "dialogue": "Oh, of course, please sit down.",
+            "newSpeaker": "true"
+        },
+        {
+            "speaker": "kid",
+            "dialogue": "Thanks.",
+            "newSpeaker": "true"
+        },
+        {
+            "speaker": "bear",
+            "dialogue": "What's wrong? It must be important because you've not spoken to me since you left the force.",
+            "newSpeaker": "true"
+        },
+        {
+            "speaker": "kid",
+            "dialogue": "I'm sorry about that.",
+            "newSpeaker": "true"
+        },
+        {
+            "speaker": "bear",
+            "dialogue": "Ah don't worry I'm just giving you a hard time, but I won’t lie, I did miss having some conversation to go with my coffee.",
+            "newSpeaker": "true"
+        },
+        {
+            "speaker": "kid",
+            "dialogue": "I need you to drop the case with the Mothfia. (Teddy stopped smiling and looked at me. I could see him running the numbers in his head. I see him thinking about all the times I've let him down, about all the favors I've asked him to do, about abandoning him.)",
+            "newSpeaker": "true"
+        },
+        {
+            "speaker": "bear",
+            "dialogue": "Is this about Sheila?",
+            "newSpeaker": "true"
+        },
+        {
+            "speaker": "kid",
+            "dialogue": "Yes, she's missing.",
+            "newSpeaker": "true"
+        },
+        {
+            "speaker": "bear",
+            "dialogue": "I'm gonna need a coffee and you get one for yourself as well.",
+            "newSpeaker": "false"
+        }
+    ]
+]

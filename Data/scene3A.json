@@ -2,22 +2,22 @@
     [
         {
             "speaker": "lamp",
-            "dialogue": "What’s wit the long face loser? Didja finally get dumped?",
+            "dialogue": "What's wit the long face loser? Didja finally get dumped?",
             "newSpeaker": "true"
         },
         {
             "speaker": "kid",
-            "dialogue": "Hello Leonard, it’s funny you mention getting dumped, as it seems that Sheila’s apartment has been wrecked and she’s nowhere to be found. You wouldn’t have something to do with that would you?",
+            "dialogue": "Hello Leonard, it’s funny you mention getting dumped, as it seems that Sheila's apartment has been wrecked and she's nowhere to be found. You wouldn't have something to do with that would you?",
             "newSpeaker": "true"
         },
         {
             "speaker": "lamp",
-            "dialogue": "I don’t know nothing",
+            "dialogue": "I don't know nothing!",
             "newSpeaker": "true"
         },
         {
             "speaker": "kid",
-            "dialogue": "So you do know something",
+            "dialogue": "So you do know something...",
             "newSpeaker": "true"
         },
         {
@@ -27,7 +27,7 @@
         },
         {
             "speaker": "kid",
-            "dialogue": "They have eyes and ears all over this neighborhood so they might have the information I need to find out what’s happened to Sheila.",
+            "dialogue": "They have eyes and ears all over this neighborhood so they might have the information I need to find out what's happened to Sheila.",
             "newSpeaker": "false"
         }
     ]

@@ -12,6 +12,13 @@ class Scene5 extends Phaser.Scene
     constructor()
     {
         super("theDiner");
+
+        // the dialogue variables
+        this.dialogueA = false;
+        this.dialogueB = false;
+
+        // the scene logic variables
+        this.coffeeVisit = false;
     }
 
     preload()
@@ -20,10 +27,11 @@ class Scene5 extends Phaser.Scene
         this.load.path = "./Assets/Images/";
 
         // load the background image
-        this.load.image("s4Background","Backgrounds/background_5.png");
+        this.load.image("background_6","Backgrounds/background_6.png");
 
-        // load officer beary
+        // load cutout images
         this.load.image("beary", "Characters/beary_1.png");
+        this.load.image("coffees", "Cutouts/mug_3.png");
     }
 
     create()
@@ -33,18 +41,29 @@ class Scene5 extends Phaser.Scene
         (
             0, // horizontal position
             0, // vertical position
-            "s4Background" // texture to render with
+            "background_6" // texture to render with
         ).setOrigin(0, 0);
 
+        // add the cutout images
         this.beary = this.add.image
         (
             192,
             81,
             "beary"
-        ).setOrigin(0).setInteractive();
-        this.beary.tint = colorPalette.purpleInt;
+        ).setOrigin(0);
 
-        // interactive events for officer beary
+        this.coffee = this.add.image
+        (
+            100,
+            400,
+            "coffees"
+        ).setOrigin(0);
+
+        this.sound.play("pianoTune", musicConfig);
+
+        // INTERACTIVE IMAGE
+        // Beary
+        //----------------------------------------------------------------------
         this.beary.on
         (
             "pointerover",
@@ -64,9 +83,82 @@ class Scene5 extends Phaser.Scene
             {
                 this.beary.clearTint();
                 this.beary.removeInteractive();
-                this.scene.start("intermission");
+                this.scene.launch("conversation", {file: "scene5B.json"});
+                this.dialogueB = true;
             }
         );
+        //-END INTERACIVE-------------------------------------------------------
+
+        // INTERACTIVE IMAGE
+        // Coffee mugs
+        //----------------------------------------------------------------------
+        this.coffee.on
+        (
+            "pointerover",
+            () => {this.coffee.tint = colorPalette.goldInt;}
+        );
+
+        this.coffee.on
+        (
+            "pointerout",
+            () => {this.coffee.tint = colorPalette.purpleInt;}
+        );
+
+        this.coffee.on
+        (
+            "pointerdown",
+            () => 
+            {
+                this.coffee.destroy();
+                this.beary.setInteractive();
+                this.beary.tint = colorPalette.purpleInt;
+            }
+        );
+        //-END INTERACIVE-------------------------------------------------------
+
+        // jump into dialogue right away
+        this.time.delayedCall
+        (
+            800,
+            () =>
+            {
+                this.scene.launch("conversation", {file: "scene5A.json"});
+                this.dialogueA = true;
+            }
+        );
+    }
+
+    update()
+    {
+        if(this.dialogueA && dialogueComplete)
+        {
+            console.log("powering coffee mugs");
+            this.dialogueA = false;
+            this.coffee.setInteractive();
+            this.coffee.tint = colorPalette.purpleInt;
+            this.refreshDialogue();
+        }
+
+        if(this.dialogueB && dialogueComplete)
+        {
+            console.log("ending scene");
+            this.dialogueB = false;
+            this.closeScene();
+        }
+    }
+
+    refreshDialogue()
+    {
+        dialogueComplete = false;
+    }
+
+    closeScene()
+    {
+        dialogueComplete = false;
+        this.sound.stopByKey("pianoTune");
+        this.scene.stop();
+        this.scene.wake("roughWorld");
+        this.sound.play("fog_city", musicConfig);
     }
 }
 

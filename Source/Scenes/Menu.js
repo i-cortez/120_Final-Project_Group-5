@@ -31,6 +31,7 @@ class Menu extends Phaser.Scene
             "background_0",
             "Images/Backgrounds/background_0.png"
         );
+        this.load.image("start", "Images/Cutouts/start.png");
         // load the menu scene music
         this.load.audio("menuTune", "Sounds/noirintro.wav");
     }
@@ -50,72 +51,45 @@ class Menu extends Phaser.Scene
 
         let centerX = game.config.width / 2;
         let centerY = game.config.height / 2;
-        // vertical space between text boxes
-        let vSpace = 64;
 
-        this.add.text
+        this.startButton = this.add.image
         (
-            centerX - 475,
-            centerY - 5 * vSpace,
-            "Group 5 Game",
-            menuConfig
-        ).setOrigin(0.5);
+            centerX - 100,
+            centerY + 200,
+            "start"
+        ).setOrigin(0.5).setInteractive().setTint(colorPalette.purpleInt);
 
-        menuConfig.fontSize = "28px";
-
-        this.add.text
-        (
-            centerX - 475,
-            centerY + 1.5 * vSpace,
-            "click start to begin",
-            menuConfig
-        ).setOrigin(0.5);
-
-        this.add.text
-        (
-            centerX,
-            centerY + 5 * vSpace,
-            "By: Ismael Cortez, Jennifer Honeywell, Nishaant Pandita",
-            menuConfig
-        ).setOrigin(0.5);
-
-        menuConfig.color = colorPalette.purpleStr;
-        this.startButton = this.add.text
-        (
-            centerX - 475,
-            centerY + 2.5 * vSpace,
-            "[START]",
-            menuConfig
-        ).setOrigin(0.5);
-        this.startButton.setInteractive();
-
-        // Adapted from:
-        //  https://snowbillr.github.io/blog//2018-07-03-buttons-in-phaser-3/
+        // INTERACTIVE IMAGE
+        // Start button
         //----------------------------------------------------------------------
         this.startButton.on
         (
             "pointerover",
-            () =>
-            {
-                menuConfig.color = colorPalette.redStr;
-                this.startButton.setStyle(menuConfig);
-            }
+            () => {this.startButton.tint = colorPalette.goldInt;}
         );
 
         this.startButton.on
         (
             "pointerout",
+            () => {this.startButton.tint = colorPalette.purpleInt;}
+        );
+
+        this.startButton.on
+        (
+            "pointerdown",
             () =>
             {
-                menuConfig.color = colorPalette.purpleStr;
-                this.startButton.setStyle(menuConfig);
+                this.startButton.clearTint();
+                this.startButton.removeInteractive();
+                this.scene.start("firstWords");
             }
         );
-        //----------------------------------------------------------------------
+        //-END INTERACTIVE------------------------------------------------------
 
         this.meunMusic = this.sound.add("menuTune");
         this.meunMusic.play(musicConfig);
 
+        // to get music to play click on the screen once :(
         this.input.on
         (
             "pointerdown",
@@ -125,17 +99,6 @@ class Menu extends Phaser.Scene
                 {
                     game.sound.context.resume();
                 }
-            }
-        );
-
-        this.startButton.on
-        (
-            "pointerdown",
-            () =>
-            {
-                menuConfig.color = colorPalette.purpleStr;
-                this.startButton.removeInteractive();
-                this.scene.start("firstWords");
             }
         );
     }

@@ -2,8 +2,8 @@
     [
         {
             "speaker": "kid",
-            "dialogue": "It’s going to be a cold day today...in Cooltown, California.",
-            "newSpeaker": "true"
+            "dialogue": "It's going to be a cold day today...in Cooltown, California.",
+            "newSpeaker": "false"
         },
         {
             "speaker": "kid",

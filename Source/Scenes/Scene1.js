@@ -82,10 +82,8 @@ class Scene1 extends Phaser.Scene
             "pointerover",
             () =>
             {
-                // this.topD.setFrame(1);
                 this.topD.tint = colorPalette.goldInt;
                 this.overSFX.play(sfxConfig);
-                console.log("pointerover");
             }
         );
 
@@ -93,12 +91,7 @@ class Scene1 extends Phaser.Scene
         this.topD.on
         (
             "pointerout",
-            () =>
-            {
-                // this.topD.setFrame(0);
-                this.topD.tint = colorPalette.purpleInt;
-                console.log("pointerout");
-            }
+            () => {this.topD.tint = colorPalette.purpleInt;}
         );
 
         this.topD.on
@@ -106,9 +99,9 @@ class Scene1 extends Phaser.Scene
             "pointerdown",
             () =>
             {
-                console.log("pointerdown");
                 this.topD.clearTint();
                 this.topD.removeInteractive();
+                this.bottomD.removeInteractive();
                 this.knockSFX.play(sfxConfig);
                 this.time.delayedCall
                 (
@@ -142,7 +135,6 @@ class Scene1 extends Phaser.Scene
             {
                 this.bottomD.tint = colorPalette.goldInt;
                 this.overSFX.play(sfxConfig);
-                console.log("pointerover");
             }
         );
 
@@ -150,11 +142,7 @@ class Scene1 extends Phaser.Scene
         this.bottomD.on
         (
             "pointerout",
-            () =>
-            {
-                this.bottomD.tint = colorPalette.purpleInt;
-                console.log("pointerout");
-            }
+            () => {this.bottomD.tint = colorPalette.purpleInt;}
         );
 
         this.bottomD.on
@@ -162,9 +150,9 @@ class Scene1 extends Phaser.Scene
             "pointerdown",
             () =>
             {
-                console.log("pointerdown");
                 this.bottomD.clearTint();
                 this.bottomD.removeInteractive();
+                this.topD.disableInteractive();
                 this.knockSFX.play(sfxConfig);
                 this.time.delayedCall
                 (
@@ -212,6 +200,7 @@ class Scene1 extends Phaser.Scene
     {
         dialogueComplete = false;
         this.openBottomD.destroy();
+        this.topD.setInteractive();
         this.bottomD.alpha = 1;
     }
 
