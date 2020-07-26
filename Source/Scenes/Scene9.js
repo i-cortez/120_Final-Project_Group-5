@@ -1,20 +1,20 @@
-// Scene0.js
+// Scene9.js
 //
 // Ismael Cortez
 // 7-10-2020
 // Group 5 Game
 //
-// This file contains the code for Scene 0: Rough and Tumble World Monologue
+// This file contains the code for Scene 9: You Let Her Go
 // This scene uses Convo.js
 //
 
-class Scene0 extends Phaser.Scene
+class Scene9 extends Phaser.Scene
 {
 
     constructor()
     {
         // argument is the identifier for this scene
-        super("firstWords"); 
+        super("letHerGo"); 
 
         // scene dialogue variables
         this.dialogueA = false;
@@ -26,7 +26,7 @@ class Scene0 extends Phaser.Scene
         this.load.path = "./Assets/Images/Backgrounds/";
 
         // load images
-        this.load.image("background_1", "background_1.png");
+        this.load.image("background_9", "background_1.png");
     }
 
     create()
@@ -38,7 +38,7 @@ class Scene0 extends Phaser.Scene
         (
             0, // horizontal position
             0, // vertical position
-            "background_1" // texture to render with
+            "background_9" // texture to render with
         ).setOrigin(0);
 
         this.time.delayedCall
@@ -46,7 +46,7 @@ class Scene0 extends Phaser.Scene
             800,
             () =>
             {
-                this.scene.launch("conversation", {file: "scene0A.json"});
+                this.scene.launch("conversation", {file: "scene9A.json"});
                 this.dialogueA = true;
             }
         );
@@ -68,7 +68,7 @@ class Scene0 extends Phaser.Scene
         this.time.delayedCall
         (
             400,
-            () => {this.scene.start("missingSocks");}
+            () => {this.scene.start("theEnd");}
         );
     }
 }

@@ -1,31 +1,31 @@
 [
     [
         {
-            "speaker": "kid",
+            "speaker": "detective",
             "dialogue": "(I pass Teddy the coffee as I had done so often when we worked cases together. Those times were nice when we were solving crimes but most of the time it was arresting rich people, having them make a few calls, then my boss would tell me to let them go.)",
             "newSpeaker": "false"
         },
         {
-            "speaker": "kid",
+            "speaker": "detective",
             "dialogue": "(It was a broken system but I should have at least told Teddy why I left, I owed him that much.)"
         },
         {
-            "speaker": "kid",
+            "speaker": "detective",
             "dialogue": "Teddy, I know this a lot for me to ask but she's really important to me, and you're the only person who can help me.",
             "newSpeaker": "true"
         },
         {
-            "speaker": "bear",
+            "speaker": "beary",
             "dialogue": "(He sighs). Consider it done, but I'm going to want you to sit with me for a bit.",
             "newSpeaker": "true"
         },
         {
-            "speaker": "kid",
+            "speaker": "detective",
             "dialogue": "(My eyes fight back tears). Teddy I...",
             "newSpeaker": "true"
         },
         {
-            "speaker": "bear",
+            "speaker": "beary",
             "dialogue": "Don't worry about it. I'm just glad to see you again old friend.",
             "newSpeaker": "false"
         }

@@ -43,10 +43,12 @@ class Convo extends Phaser.Scene
         this.eof = false;
 
         // character variables
-        this.kid = null;
-        this.lamp = null;
-        this.moth = null;
-        this.bear = null;
+        // names after this. must match key!
+        this.detective = null;
+        this.lamplord = null;
+        this.mothfather = null;
+        this.beary = null;
+        this.sheila = null;
 
         this.tweenDuration = 500;
     }
@@ -74,11 +76,13 @@ class Convo extends Phaser.Scene
         this.load.image("still_fog", "still_fog.png");
 
         // preload the characters
+        // remember keys must match character variable names!
         this.load.path = "./Assets/Images/Characters/";
-        this.load.image("kid", "kid_0.png");
-        this.load.image("lamp", "elephant_0.png");
-        this.load.image("moth", "mothfather_1.png");
-        this.load.image("bear", "beary_2.png");
+        this.load.image("detective", "kid_0.png"); //
+        this.load.image("lamplord", "lamplord_0.png");
+        this.load.image("mothfather", "mothfather_1.png");
+        this.load.image("beary", "beary_2.png");
+        this.load.image("sheila", "sheila_1.png");
     }
 
     create()
@@ -116,32 +120,39 @@ class Convo extends Phaser.Scene
         );
 
         // ready the character images offscreen
-        this.kid = this.add.sprite
+        this.detective = this.add.sprite
         (
             this.OFFSCREEN_X,
             this.ONSCREEN_Y,
-            "kid"
+            "detective"
         ).setOrigin(0.5);
         
-        this.lamp = this.add.sprite
+        this.lamplord = this.add.sprite
         (
             this.OFFSCREEN_X,
             this.ONSCREEN_Y,
-            "lamp"
+            "lamplord"
         ).setOrigin(0.5);
 
-        this.moth = this.add.sprite
+        this.mothfather = this.add.sprite
         (
             this.OFFSCREEN_X,
             this.ONSCREEN_Y,
-            "moth"
+            "mothfather"
         ).setOrigin(0.5);
 
-        this.bear = this.add.sprite
+        this.beary = this.add.sprite
         (
             this.OFFSCREEN_X,
             this.ONSCREEN_Y,
-            "bear"
+            "beary"
+        ).setOrigin(0.5);
+
+        this.sheila = this.add.sprite
+        (
+            this.OFFSCREEN_X,
+            this.ONSCREEN_Y,
+            "sheila"
         ).setOrigin(0.5);
 
         this.typeText();
@@ -242,7 +253,6 @@ class Convo extends Phaser.Scene
                     );
                 }
 
-                // tween in new speaker's image
                 this.tweens.add
                 (
                     {

@@ -5,7 +5,7 @@
 // Group 5 Game
 //
 // This file contains the code for Scene 4: The Mothfia
-// This scene uses the dialogue system from Convo.js
+// This scene uses Convo.js
 //
 
 class Scene4 extends Phaser.Scene
@@ -23,23 +23,24 @@ class Scene4 extends Phaser.Scene
     {
 
         // load the audio
-        this.load.audio("pianoTune", "Assets/Sounds/pianobar.wav");
+        this.load.audio("piano_song_1", "Assets/Sounds/Music/emptybar.wav");
+        this.load.audio("crowd_sfx", "Assets/Sounds/SFX/crowdnoise.wav");
 
         // set the loader path
         this.load.path = "./Assets/Images/";
 
-        // load the background image
+        // add the images
         this.load.image("background_5","Backgrounds/background_5.png");
-
-        // load the mothfather
         this.load.image("mothfather_0", "Characters/mothfather_0.png");
-
-
     }
 
+    //--------------------------------------------------------------------------
+    // CREATE
+    //--------------------------------------------------------------------------
     create()
     {
-        // add background image
+        // IMAGES
+        //----------------------------------------------------------------------
         this.background = this.add.image
         (
             0, // horizontal position
@@ -55,9 +56,14 @@ class Scene4 extends Phaser.Scene
         ).setOrigin(0).setInteractive();
         this.mothfather.tint = colorPalette.purpleInt;
 
-        this.sceneMusic = this.sound.add("pianoTune");
-        this.sceneMusic.play(musicConfig);
+        // SOUNDS
+        //----------------------------------------------------------------------
+        // add scene music
+        this.sound.add("piano_song_1");
+        this.sound.play("piano_song_1", musicConfig);
+        this.sound.play("crowd_sfx", musicConfig);
 
+        // launch the dialogue scene
         this.time.delayedCall
         (
             800,
@@ -68,11 +74,17 @@ class Scene4 extends Phaser.Scene
             }
         );
 
-        // interactive events for mothfather
+        // INTERACTIVE IMAGES
+        //----------------------------------------------------------------------
+        // the mothfather
         this.mothfather.on
         (
             "pointerover",
-            () => {this.mothfather.tint = colorPalette.goldInt;}
+            () => 
+            {
+                this.mothfather.tint = colorPalette.goldInt;
+                this.sound.play("over_sfx_1", sfxConfig);
+            }
         );
 
         this.mothfather.on
@@ -93,12 +105,13 @@ class Scene4 extends Phaser.Scene
             }
         );
     }
+    //-end create()-------------------------------------------------------------
 
     update()
     {
         if(this.dialogueA && dialogueComplete)
         {
-            console.log("refresh scene dialogue");
+            console.log("refresh dialogue");
             this.dialogueA = false;
             this.refreshDialogue();
         }
@@ -107,7 +120,7 @@ class Scene4 extends Phaser.Scene
         {
             console.log("ending scene");
             this.dialogueB = false;
-            this.closeScene();
+            this.endOnB();
         }
     }
 
@@ -116,13 +129,12 @@ class Scene4 extends Phaser.Scene
         dialogueComplete = false;
     }
 
-    closeScene()
+    endOnB()
     {
         dialogueComplete = false;
-        this.sound.stopByKey("pianoTune");
+        this.sound.stopByKey("crowd_sfx");
         this.scene.stop();
         this.scene.wake("roughWorld");
-        this.sound.play("fog_city", musicConfig);
     }
 }
 

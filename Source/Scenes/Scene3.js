@@ -5,7 +5,7 @@
 // Group 5 Game
 //
 // This file contains the code for Scene 3: The Lamplord
-// This scene uses dialogue system from Convo.js
+// This scene uses Convo.js
 //
 
 class Scene3 extends Phaser.Scene
@@ -15,59 +15,58 @@ class Scene3 extends Phaser.Scene
     {
         super("lamplord"); // argument is the identifier for this scene
 
-        this.finalDialogue = false;
+        // scene dialogue variables
+        this.dialogueA = false;
     }
 
     preload()
     {
-        // set the loader path for images
+        // set the loader path
         this.load.path = "./Assets/Images/Backgrounds/";
 
-        // preload the background images
+        // load images
         this.load.image("background_4", "background_4.png");
     }
 
     create()
     {
+        // IMAGES
+        //----------------------------------------------------------------------
         // add background image
         this.background = this.add.image
         (
             0, // horizontal position
             0, // vertical position
             "background_4" // texture to render with
-        ).setOrigin(0, 0);
+        ).setOrigin(0);
 
-        this.sound.play("menuTune", musicConfig);
-
+        // launch the dialogue scene
         this.time.delayedCall
         (
             800,
             () =>
             {
                 this.scene.launch("conversation", {file: "scene3A.json"});
-                this.finalDialogue = true;
+                this.dialogueA = true;
             }
         );
-
     }
 
     update()
     {
-        if(this.finalDialogue && dialogueComplete)
+        if(this.dialogueA && dialogueComplete)
         {
             console.log("ending scene");
-            this.finalDialogue = false;
-            this.closeScene();
+            this.dialogueA = false;
+            this.endOnA();
         }
     }
 
-    closeScene()
+    endOnA()
     {
         dialogueComplete = false;
-        this.sound.stopByKey("menuTune");
         this.scene.stop();
         this.scene.wake("roughWorld");
-        this.sound.play("fog_city", musicConfig);
     }
 }
 

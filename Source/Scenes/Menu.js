@@ -25,15 +25,19 @@ class Menu extends Phaser.Scene
     {
         // set the loader path
         this.load.path = "./Assets/";
-        // preload the background image with the load image function
+
+        // load images
         this.load.image
         (
             "background_0",
             "Images/Backgrounds/background_0.png"
         );
         this.load.image("start", "Images/Cutouts/start.png");
-        // load the menu scene music
-        this.load.audio("menuTune", "Sounds/noirintro.wav");
+
+        // load sounds
+        this.load.audio("menu_song", "Sounds/Music/noirintro.wav");
+        this.load.audio("over_sfx_0", "Sounds/SFX/over_sfx_0.wav");
+        this.load.audio("over_sfx_1", "Sounds/SFX/over_sfx_1.wav");
     }
 
     //--------------------------------------------------------------------------
@@ -41,7 +45,8 @@ class Menu extends Phaser.Scene
     //--------------------------------------------------------------------------
     create()
     {
-        // add background image
+        // IMAGES---------------------------------------------------------------
+        // background image
         this.background = this.add.image
         (
             0, // horizontal position
@@ -59,13 +64,37 @@ class Menu extends Phaser.Scene
             "start"
         ).setOrigin(0.5).setInteractive().setTint(colorPalette.purpleInt);
 
-        // INTERACTIVE IMAGE
+        // SOUNDS
+        //----------------------------------------------------------------------
+        // to get music to play click on the screen once :(
+            this.input.on
+            (
+                "pointerdown",
+                () =>
+                {
+                    if(game.sound.context.state === 'suspended')
+                    {
+                        game.sound.context.resume();
+                    }
+                }
+            );
+    
+            this.sound.add("over_sfx_0");
+            this.sound.add("over_sfx_1");
+            this.sound.add("menu_song");
+            this.sound.play("menu_song", musicConfig);
+
+        // INTERACTIVE IMAGES
         // Start button
         //----------------------------------------------------------------------
         this.startButton.on
         (
             "pointerover",
-            () => {this.startButton.tint = colorPalette.goldInt;}
+            () => 
+            {
+                this.startButton.tint = colorPalette.goldInt;
+                this.sound.play(getRandSFX(), sfxConfig);
+            }
         );
 
         this.startButton.on
@@ -84,24 +113,8 @@ class Menu extends Phaser.Scene
                 this.scene.start("firstWords");
             }
         );
-        //-END INTERACTIVE------------------------------------------------------
-
-        this.meunMusic = this.sound.add("menuTune");
-        this.meunMusic.play(musicConfig);
-
-        // to get music to play click on the screen once :(
-        this.input.on
-        (
-            "pointerdown",
-            () =>
-            {
-                if(game.sound.context.state === 'suspended')
-                {
-                    game.sound.context.resume();
-                }
-            }
-        );
+        //-END INTERACTIVES------------------------------------------------------
     }
-    //-end create()-------------------------------------------------------------
+    //-end create()-------------------------------------------------------------    
 }
 

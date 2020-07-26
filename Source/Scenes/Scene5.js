@@ -5,6 +5,7 @@
 // Group 5 Game
 //
 // This file contains the code for Scene 5: Officer Beary
+// This scene uses Convo.js
 //
 
 class Scene5 extends Phaser.Scene
@@ -26,48 +27,59 @@ class Scene5 extends Phaser.Scene
         // set the loader path
         this.load.path = "./Assets/Images/";
 
-        // load the background image
+        // load images
         this.load.image("background_6","Backgrounds/background_6.png");
-
-        // load cutout images
-        this.load.image("beary", "Characters/beary_1.png");
+        this.load.image("beary_1", "Characters/beary_1.png");
         this.load.image("coffees", "Cutouts/mug_3.png");
     }
 
+    //--------------------------------------------------------------------------
+    // CREATE
+    //--------------------------------------------------------------------------
     create()
     {
-        // add background image
+        // IMAGES
+        //----------------------------------------------------------------------
+        // background image
         this.background = this.add.image
         (
             0, // horizontal position
             0, // vertical position
             "background_6" // texture to render with
-        ).setOrigin(0, 0);
+        ).setOrigin(0);
 
-        // add the cutout images
+        // bear
         this.beary = this.add.image
         (
             192,
             81,
-            "beary"
+            "beary_1"
         ).setOrigin(0);
 
-        this.coffee = this.add.image
+        // coffees
+        this.coffees = this.add.image
         (
             100,
             400,
             "coffees"
         ).setOrigin(0);
 
-        this.sound.play("pianoTune", musicConfig);
-
-        // INTERACTIVE IMAGE
-        // Beary
+        // SOUNDS
         //----------------------------------------------------------------------
+        // play scene music
+        this.sound.play("crowd_sfx", musicConfig);
+
+        // INTERACTIVE IMAGEs
+        //----------------------------------------------------------------------
+        // Beary
         this.beary.on
         (
             "pointerover",
-            () => {this.beary.tint = colorPalette.goldInt;}
+            () => 
+            {
+                this.beary.tint = colorPalette.goldInt;
+                this.sound.play("over_sfx_1", sfxConfig);
+            }
         );
 
         this.beary.on
@@ -87,34 +99,34 @@ class Scene5 extends Phaser.Scene
                 this.dialogueB = true;
             }
         );
-        //-END INTERACIVE-------------------------------------------------------
 
-        // INTERACTIVE IMAGE
-        // Coffee mugs
-        //----------------------------------------------------------------------
-        this.coffee.on
+        // coffees
+        this.coffees.on
         (
             "pointerover",
-            () => {this.coffee.tint = colorPalette.goldInt;}
+            () => 
+            {
+                this.coffees.tint = colorPalette.goldInt;
+                this.sound.play("over_sfx_1", sfxConfig);
+            }
         );
 
-        this.coffee.on
+        this.coffees.on
         (
             "pointerout",
-            () => {this.coffee.tint = colorPalette.purpleInt;}
+            () => {this.coffees.tint = colorPalette.purpleInt;}
         );
 
-        this.coffee.on
+        this.coffees.on
         (
             "pointerdown",
             () => 
             {
-                this.coffee.destroy();
+                this.coffees.destroy();
                 this.beary.setInteractive();
                 this.beary.tint = colorPalette.purpleInt;
             }
         );
-        //-END INTERACIVE-------------------------------------------------------
 
         // jump into dialogue right away
         this.time.delayedCall
@@ -133,9 +145,10 @@ class Scene5 extends Phaser.Scene
         if(this.dialogueA && dialogueComplete)
         {
             console.log("powering coffee mugs");
+            console.log("refresing dialogue");
             this.dialogueA = false;
-            this.coffee.setInteractive();
-            this.coffee.tint = colorPalette.purpleInt;
+            this.coffees.setInteractive();
+            this.coffees.tint = colorPalette.purpleInt;
             this.refreshDialogue();
         }
 
@@ -143,7 +156,7 @@ class Scene5 extends Phaser.Scene
         {
             console.log("ending scene");
             this.dialogueB = false;
-            this.closeScene();
+            this.endOnB();
         }
     }
 
@@ -152,13 +165,12 @@ class Scene5 extends Phaser.Scene
         dialogueComplete = false;
     }
 
-    closeScene()
+    endOnB()
     {
         dialogueComplete = false;
-        this.sound.stopByKey("pianoTune");
+        this.sound.stopByKey("crowd_sfx");
         this.scene.stop();
         this.scene.wake("roughWorld");
-        this.sound.play("fog_city", musicConfig);
     }
 }
 

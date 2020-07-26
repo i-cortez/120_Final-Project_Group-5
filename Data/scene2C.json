@@ -1,12 +1,12 @@
 [
     [
         {
-            "speaker": "kid",
+            "speaker": "detective",
             "dialogue": "That's Officer Theodore Beary.",
             "newSpeaker": "false"
         },
         {
-            "speaker": "kid",
+            "speaker": "detective",
             "dialogue": "Paying him a visit might help me find Sheila, but I'm not ready to go there just yet..."
         }
     ]

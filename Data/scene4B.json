@@ -1,57 +1,57 @@
 [
     [
         {
-            "speaker": "moth",
+            "speaker": "mothfather",
             "dialogue": "I always knew you would come to my table eventually.",
             "newSpeaker": "true"
         },
         {
-            "speaker": "kid",
+            "speaker": "detective",
             "dialogue": "Mothfather...",
             "newSpeaker": "true"
         },
         {
-            "speaker": "moth",
+            "speaker": "mothfather",
             "dialogue": "I hope you don't think I grew kinder in my old age.",
             "newSpeaker": "true"
         },
         {
-            "speaker": "kid",
+            "speaker": "detective",
             "dialogue": "I have no interest in jokes, Sheila's missing.",
             "newSpeaker": "true"
         },
         {
-            "speaker": "moth",
+            "speaker": "mothfather",
             "dialogue": "Now who's the comedian? You think you can come here and I'll just GIVE you the information that came from my hard work?",
             "newSpeaker": "true"
         },
         {
-            "speaker": "kid",
+            "speaker": "detective",
             "dialogue": "What do you want?",
             "newSpeaker": "true"
         },
         {
-            "speaker": "moth",
+            "speaker": "mothfather",
             "dialogue": "Your old partner Officer Barry, he's sticking his nose into my business and I would rather he not.",
             "newSpeaker": "true"
         },
         {
-            "speaker": "kid",
+            "speaker": "detective",
             "dialogue": "And you'll help me locate Sheila?",
             "newSpeaker": "true"
         },
         {
-            "speaker": "moth",
+            "speaker": "mothfather",
             "dialogue": "I'll give you all the information about her and where she might be.",
             "newSpeaker": "true"
         },
         {
-            "speaker": "kid",
+            "speaker": "detective",
             "dialogue": "Alright, I'll see what I can do...",
             "newSpeaker": "true"
         },
         {
-            "speaker": "moth",
+            "speaker": "mothfather",
             "dialogue": "Good luck detective.",
             "newSpeaker": "false"
         }

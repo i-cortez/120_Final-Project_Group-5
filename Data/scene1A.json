@@ -1,16 +1,16 @@
 [
     [
         {
-            "speaker": "kid",
+            "speaker": "detective",
             "dialogue": "I knock a couple times on the door but there's no sound coming from inside. After waiting a bit my patience ran out. I try to open the door and found it unlocked.",
             "newSpeaker": "false"
         },
         {
-            "speaker": "kid",
+            "speaker": "detective",
             "dialogue": "The place was a mess, it seemed like someone scrambled to leave or maybe..."
         },
         {
-            "speaker": "kid",
+            "speaker": "detective",
             "dialogue": "Someone had tossed the place looking for something and I already had a suspect in mind..."
         }
     ]
