@@ -41,6 +41,10 @@ class Scene9 extends Phaser.Scene
             "background_9" // texture to render with
         ).setOrigin(0);
 
+        // SOUNDS
+        //----------------------------------------------------------------------
+        this.sound.play("menu_song", musicConfig);
+
         this.time.delayedCall
         (
             800,

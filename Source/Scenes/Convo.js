@@ -49,6 +49,7 @@ class Convo extends Phaser.Scene
         this.mothfather = null;
         this.beary = null;
         this.sheila = null;
+        this.thug = null;
 
         this.tweenDuration = 500;
     }
@@ -83,6 +84,7 @@ class Convo extends Phaser.Scene
         this.load.image("mothfather", "mothfather_1.png");
         this.load.image("beary", "beary_2.png");
         this.load.image("sheila", "sheila_1.png");
+        this.load.image("thug", "thug_0.png");
     }
 
     create()
@@ -153,6 +155,13 @@ class Convo extends Phaser.Scene
             this.OFFSCREEN_X,
             this.ONSCREEN_Y,
             "sheila"
+        ).setOrigin(0.5);
+
+        this.thug = this.add.sprite
+        (
+            this.OFFSCREEN_X,
+            this.ONSCREEN_Y,
+            "thug"
         ).setOrigin(0.5);
 
         this.typeText();

@@ -43,8 +43,6 @@ class Scene2 extends Phaser.Scene
             "background_3","Images/Backgrounds/background_3.png"
         );
 
-        this.load.image("fog", "Images/Backgrounds/fog.png");
-
         this.load.image
         (
             "nightstand",
@@ -195,7 +193,7 @@ class Scene2 extends Phaser.Scene
                     this.scene.launch("conversation", {file: "scene2E.json"});
                     this.dialogueE = true;
                 }
-                else if(this.bearVisit && ! this.mothVisit1)
+                else if(this.bearVisit && !this.mothVisit1)
                 {
                     this.car.disableInteractive();
                     this.mothdrawer.clearTint();
@@ -302,8 +300,8 @@ class Scene2 extends Phaser.Scene
 
         if(this.dialogueA && dialogueComplete)
         {
-            console.log("pause scene");
             this.dialogueA = false;
+            console.log("pause scene");
             this.initLampScene();
         }
 
@@ -333,35 +331,35 @@ class Scene2 extends Phaser.Scene
 
         if(this.dialogueE && dialogueComplete)
         {
+            this.dialogueE = false;
             this.mothdrawer.setInteractive();
             this.beary.setInteractive();
             this.car.setInteractive();
             console.log("pause scene");
-            this.dialogueE = false;
             this.initMothScene();
         }
 
         if(this.dialogueF && dialogueComplete)
         {
+            this.dialogueF = false;
             this.mothdrawer.setInteractive();
             this.car.setInteractive();
             console.log("pause scene");
-            this.dialogueF = false;
             this.initBearScene();
         }
 
         if(this.dialogueG && dialogueComplete)
         {
+            this.dialogueG = false;
             this.car.setInteractive();
             console.log("pause scene");
-            this.dialogueG = false;
             this.initBetrayalScene();
         }
 
         if(this.dialogueH && dialogueComplete)
         {
-            console.log("ending scene");
             this.dialogueH = false;
+            console.log("ending scene");
             this.initCarScene();
         }
     }
@@ -399,6 +397,7 @@ class Scene2 extends Phaser.Scene
     {
         dialogueComplete = false;
         this.mothVisit1 = true;
+        this.sound.stopByKey("piano_song_1");
         this.scene.sleep();
         this.scene.launch("betrayal");
     }
@@ -407,12 +406,8 @@ class Scene2 extends Phaser.Scene
     {
         dialogueComplete = false;
         this.carVisit = true;
+        this.reInitVars();
         this.scene.start("sheila");
-    }
-
-    refreshDialogue()
-    {
-        dialogueComplete = false;
     }
 
     unSetInteractive()
@@ -482,6 +477,16 @@ class Scene2 extends Phaser.Scene
             this.beary.setInteractive();
             this.car.setInteractive();
         }
+    }
+
+    reInitVars()
+    {
+        // the scene logic variables
+        this.lampVisit = false;
+        this.mothVisit0 = false;
+        this.mothVisit1 = false;
+        this.bearVisit = false;
+        this.carVisit = false;
     }
 }
 

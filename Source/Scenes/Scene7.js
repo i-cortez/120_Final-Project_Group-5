@@ -197,6 +197,7 @@ class Scene7 extends Phaser.Scene
             800,
             () =>
             {
+                this.sound.play("tires_sfx", sfxConfig);
                 this.scene.launch("conversation", {file: "scene7A.json"});
                 this.dialogueA = true;
             }
@@ -272,6 +273,7 @@ class Scene7 extends Phaser.Scene
     endOnC()
     {
         dialogueComplete = false;
+        this.firstClue = false;
         this.scene.stop();
         this.scene.wake("roughWorld");
     }

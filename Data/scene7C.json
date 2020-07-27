@@ -2,12 +2,8 @@
     [
         {
             "speaker": "detective",
-            "dialogue": "It reads, \"Hotwheels at 10pm.\"",
+            "dialogue": "It's a note from Sheila! It says, \"Hotwheels at 10pm.\" It's almost 10! I have to hurry!",
             "newSpeaker": "false"
-        },
-        {
-            "speaker": "detective",
-            "dialogue": "It's already almost 10pm! I should get to the Hotwheels car and find out what's going on!."
         }
     ]
 ]

@@ -213,12 +213,14 @@ class Scene8 extends Phaser.Scene
         {
             this.choice0 = false;
             console.log("end with option 0");
+            this.sound.stopByKey("end_song");
             this.scene.start("letHerGo");
         }
         else if(this.choice1)
         {
             this.choice1 = false;
             console.log("end with option 1");
+            this.sound.stopByKey("end_song");
             this.scene.start("haveHerStay");
         }
     }

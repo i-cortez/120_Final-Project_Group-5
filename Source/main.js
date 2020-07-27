@@ -56,8 +56,6 @@ let colorPalette =
 
 let dialogueComplete = false;
 
-
-
 function getRandSFX()
 {
     let sfx = ["over_sfx_0", "over_sfx_1"];
@@ -65,3 +63,4 @@ function getRandSFX()
     let str = sfx[x];
     return str;
 }
+

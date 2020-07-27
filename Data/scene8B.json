@@ -2,12 +2,32 @@
     [
         {
             "speaker": "detective",
-            "dialogue": "Sheila! Where are you going?",
+            "dialogue": "She turns to look at me, she looks away, she tells the cab driver to wait a little longer.",
+            "newSpeaker": "false"
+        },
+        {
+            "speaker": "detective",
+            "dialogue": "\"Sheila I just found your note, what's going on?\"",
             "newSpeaker": "true"
         },
         {
             "speaker": "sheila",
-            "dialogue": "I'm leaving this dump. I want to live my life elsewhere!",
+            "dialogue": "\"I have to go, I have too many debts in this city, I can't stay here any longer.\"",
+            "newSpeaker": "true"
+        },
+        {
+            "speaker": "detective",
+            "dialogue": "\"Sheila, don't leave! We can figure something out!\"",
+            "newSpeaker": "true"
+        },
+        {
+            "speaker": "sheila",
+            "dialogue": "\"This is the best course of action Darling, trust me. But you'll be ok, don't worry about it.\"",
+            "newSpeaker": "true"
+        },
+        {
+            "speaker": "detective",
+            "dialogue": "I see the pain in her eyes, it's as tough for her as it is for me but what should I do?",
             "newSpeaker": "false"
         }
     ]

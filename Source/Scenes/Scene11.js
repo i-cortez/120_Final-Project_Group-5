@@ -65,7 +65,7 @@ class Scene11 extends Phaser.Scene
             () => 
             {
                 this.scene.start("menuScene");
-                this.sound.stopByKey("piano_song_1");
+                this.sound.stopByKey("menu_song");
             }
         );
     }

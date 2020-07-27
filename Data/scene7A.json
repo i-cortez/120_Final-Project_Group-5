@@ -2,12 +2,28 @@
     [
         {
             "speaker": "detective",
-            "dialogue": "Oww... My head hurts.",
+            "dialogue": "The car came to a stop and I looked outside to see the city dump. The moth goons throw me out of the car. I was so focused on Sheila that I didn't even notice that they were driving me out of town. They laugh at me.",
+            "newSpeaker": "true"
+        },
+        {
+            "speaker": "thug",
+            "dialogue": "\"Smell you later Detective! Don't worry, we'll take good care of your partner when we find her!\"",
+            "newSpeaker": "true"
+        },
+        {
+            "speaker": "detective",
+            "dialogue": "\"Darn you Moths!\" I yell as they drive off.",
             "newSpeaker": "false"
         },
         {
             "speaker": "detective",
-            "dialogue": "What am I doing here? The Mothfia double crossed me! I should look around and see if I can figure out what's going on..."
+            "dialogue": "I'm a fool and now I'm stuck in this dump with no clues of where Shiela is...",
+            "newSpeaker": "false"
+        },
+        {
+            "speaker": "detective",
+            "dialogue": "Wait, what are these papers that fell out of my coat?",
+            "newSpeaker": "false"
         }
     ]
 ]

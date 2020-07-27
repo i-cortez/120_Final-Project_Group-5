@@ -2,57 +2,57 @@
     [
         {
             "speaker": "detective",
-            "dialogue": "(I entered the cafe and walked past the waitress and right up to Teddy). Teddy, I need help with a case.",
+            "dialogue": "I entered the cafe and walked past the waitress and right up to Teddy. \"Teddy, I need help with a case.\"",
             "newSpeaker": "false"
         },
         {
             "speaker": "detective",
-            "dialogue": "(Theadore looks up at me, he must have seen the panic in my eyes.)",
+            "dialogue": "Theadore looks up at me, he must have seen the panic in my eyes.",
             "newSpeaker": "true"
         },
         {
             "speaker": "beary",
-            "dialogue": "Oh, of course, please sit down.",
+            "dialogue": "\"Oh, of course, please sit down.\"",
             "newSpeaker": "true"
         },
         {
             "speaker": "detective",
-            "dialogue": "Thanks...",
+            "dialogue": "\"Thanks...\"",
             "newSpeaker": "true"
         },
         {
             "speaker": "beary",
-            "dialogue": "What's wrong? It must be important because you've not spoken to me since you left the force.",
+            "dialogue": "\"What's wrong? It must be important because you've not spoken to me since you left the force.\"",
             "newSpeaker": "true"
         },
         {
             "speaker": "detective",
-            "dialogue": "I'm sorry about that.",
+            "dialogue": "\"I'm sorry about that...\"",
             "newSpeaker": "true"
         },
         {
             "speaker": "beary",
-            "dialogue": "Ah don't worry I'm just giving you a hard time, but I won’t lie, I did miss having some conversation to go with my coffee.",
+            "dialogue": "\"Ah don't worry I'm just giving you a hard time, but I won’t lie, I did miss having some conversation to go with my coffee.\"",
             "newSpeaker": "true"
         },
         {
             "speaker": "detective",
-            "dialogue": "I need you to drop the case with the Mothfia. (Teddy stopped smiling and looked at me. I could see him running the numbers in his head. I see him thinking about all the times I've let him down, about all the favors I've asked him to do, about abandoning him.)",
+            "dialogue": "\"I need you to drop the case with the Mothfia.\" Teddy stopped smiling and looked at me. I could see him running the numbers in his head. I see him thinking about all the times I've let him down, about all the favors I've asked him to do, about abandoning him.",
             "newSpeaker": "true"
         },
         {
             "speaker": "beary",
-            "dialogue": "Is this about Sheila?",
+            "dialogue": "\"Is this about Sheila?\"",
             "newSpeaker": "true"
         },
         {
             "speaker": "detective",
-            "dialogue": "Yes, she's missing.",
+            "dialogue": "\"Yes, she's missing.\"",
             "newSpeaker": "true"
         },
         {
             "speaker": "beary",
-            "dialogue": "I'm gonna need a coffee and you get one for yourself as well.",
+            "dialogue": "\"I'm gonna need a coffee and you get one for yourself as well.\"",
             "newSpeaker": "false"
         }
     ]

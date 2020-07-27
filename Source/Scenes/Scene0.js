@@ -27,6 +27,7 @@ class Scene0 extends Phaser.Scene
 
         // load images
         this.load.image("background_1", "background_1.png");
+        this.load.image("fog", "fog.png");
     }
 
     create()
@@ -41,9 +42,20 @@ class Scene0 extends Phaser.Scene
             "background_1" // texture to render with
         ).setOrigin(0);
 
+        // add the fog
+        this.fog = this.add.tileSprite
+        (
+            0, // x-pos
+            0, // y-pos
+            config.width, // width
+            config.height, // height
+            "fog", // texture
+            // frame
+        ).setOrigin(0, 0).setAlpha(1);
+
         this.time.delayedCall
         (
-            800,
+            1000,
             () =>
             {
                 this.scene.launch("conversation", {file: "scene0A.json"});
@@ -54,6 +66,7 @@ class Scene0 extends Phaser.Scene
 
     update()
     {
+        this.fog.tilePositionX -= 1;
         if(this.dialogueA && dialogueComplete)
         {
             console.log("ending scene");

@@ -17,9 +17,6 @@ class Scene5 extends Phaser.Scene
         // the dialogue variables
         this.dialogueA = false;
         this.dialogueB = false;
-
-        // the scene logic variables
-        this.coffeeVisit = false;
     }
 
     preload()

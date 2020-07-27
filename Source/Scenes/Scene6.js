@@ -20,7 +20,10 @@ class Scene6 extends Phaser.Scene
 
     preload()
     {
-        // load the images
+        // load the sound
+        this.load.audio("end_song", "Assets/Sounds/Music/endtimes.wav");
+        this.load.audio("tires_sfx", "Assets/Sounds/SFX/driveaway.wav");
+
     }
 
     create()
@@ -40,6 +43,14 @@ class Scene6 extends Phaser.Scene
             234,
             "mothfather_0"
         ).setOrigin(0);
+
+        // SOUNDS
+        //----------------------------------------------------------------------
+        // add scene music
+        this.sound.add("end_song");
+        this.sound.add("tires_sfx");
+        this.sound.play("end_song", musicConfig);
+        this.sound.play("crowd_sfx", musicConfig);
 
         // launch the dialogue scene
         this.time.delayedCall
@@ -69,7 +80,11 @@ class Scene6 extends Phaser.Scene
         this.time.delayedCall
         (
             400,
-            () => {this.scene.start("theClue");}
+            () => 
+            {
+                this.sound.stopByKey("crowd_sfx");
+                this.scene.start("theClue");
+            }
         );
     }
 }

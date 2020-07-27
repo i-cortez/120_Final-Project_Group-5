@@ -53,8 +53,7 @@ class Scene4 extends Phaser.Scene
             13,
             234,
             "mothfather_0"
-        ).setOrigin(0).setInteractive();
-        this.mothfather.tint = colorPalette.purpleInt;
+        ).setOrigin(0);
 
         // SOUNDS
         //----------------------------------------------------------------------
@@ -113,6 +112,8 @@ class Scene4 extends Phaser.Scene
         {
             console.log("refresh dialogue");
             this.dialogueA = false;
+            this.mothfather.setInteractive();
+            this.mothfather.tint = colorPalette.purpleInt;
             this.refreshDialogue();
         }
 
