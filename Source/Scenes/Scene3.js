@@ -56,7 +56,6 @@ class Scene3 extends Phaser.Scene
     {
         if(this.dialogueA && dialogueComplete)
         {
-            console.log("ending scene");
             this.dialogueA = false;
             this.endOnA();
         }

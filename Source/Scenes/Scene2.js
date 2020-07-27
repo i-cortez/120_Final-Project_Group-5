@@ -301,7 +301,6 @@ class Scene2 extends Phaser.Scene
         if(this.dialogueA && dialogueComplete)
         {
             this.dialogueA = false;
-            console.log("pause scene");
             this.initLampScene();
         }
 
@@ -309,7 +308,6 @@ class Scene2 extends Phaser.Scene
         {
             this.dialogueB = false;
             dialogueComplete = false;
-            console.log("refresh dialogue");
             this.reSetInteractive();
         }
 
@@ -317,7 +315,6 @@ class Scene2 extends Phaser.Scene
         {
             this.dialogueC = false;
             dialogueComplete = false;
-            console.log("refresh dialogue");
             this.reSetInteractive();
         }
 
@@ -325,7 +322,6 @@ class Scene2 extends Phaser.Scene
         {
             this.dialogueD = false;
             dialogueComplete = false;
-            console.log("refresh scene dialogue");
             this.reSetInteractive();
         }
 
@@ -335,7 +331,6 @@ class Scene2 extends Phaser.Scene
             this.mothdrawer.setInteractive();
             this.beary.setInteractive();
             this.car.setInteractive();
-            console.log("pause scene");
             this.initMothScene();
         }
 
@@ -344,7 +339,6 @@ class Scene2 extends Phaser.Scene
             this.dialogueF = false;
             this.mothdrawer.setInteractive();
             this.car.setInteractive();
-            console.log("pause scene");
             this.initBearScene();
         }
 
@@ -352,14 +346,12 @@ class Scene2 extends Phaser.Scene
         {
             this.dialogueG = false;
             this.car.setInteractive();
-            console.log("pause scene");
             this.initBetrayalScene();
         }
 
         if(this.dialogueH && dialogueComplete)
         {
             this.dialogueH = false;
-            console.log("ending scene");
             this.initCarScene();
         }
     }

@@ -141,8 +141,6 @@ class Scene5 extends Phaser.Scene
     {
         if(this.dialogueA && dialogueComplete)
         {
-            console.log("powering coffee mugs");
-            console.log("refresing dialogue");
             this.dialogueA = false;
             this.coffees.setInteractive();
             this.coffees.tint = colorPalette.purpleInt;
@@ -151,7 +149,6 @@ class Scene5 extends Phaser.Scene
 
         if(this.dialogueB && dialogueComplete)
         {
-            console.log("ending scene");
             this.dialogueB = false;
             this.endOnB();
         }

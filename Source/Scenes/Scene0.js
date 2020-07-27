@@ -69,7 +69,6 @@ class Scene0 extends Phaser.Scene
         this.fog.tilePositionX -= 1;
         if(this.dialogueA && dialogueComplete)
         {
-            console.log("ending scene");
             this.dialogueA = false;
             this.endOnA();
         }

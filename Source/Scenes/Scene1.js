@@ -190,14 +190,12 @@ class Scene1 extends Phaser.Scene
     {
         if(this.dialogueA && dialogueComplete)
         {
-            console.log("refresh dialogue");
             this.dialogueA = false;
             this.refreshA();
         }
 
         if(this.dialogueB && dialogueComplete)
         {
-            console.log("ending scene");
             this.dialogueB = false;
             this.endOnB();
         }

@@ -43,6 +43,15 @@ class Scene11 extends Phaser.Scene
             64
         ).setOrigin(0.5);
 
+        this.text3 = this.add.bitmapText
+        (
+            640,
+            660,
+            "scene_font",
+            "Ismael Cortez (programmer), Jennifer Honeywell (artist), Nishaant Pandita (sound and writing)",
+            25
+        ).setOrigin(0.5);
+
         this.text1.on
         (
             "pointerover",

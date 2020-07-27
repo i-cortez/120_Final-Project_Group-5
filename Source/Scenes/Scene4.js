@@ -110,7 +110,6 @@ class Scene4 extends Phaser.Scene
     {
         if(this.dialogueA && dialogueComplete)
         {
-            console.log("refresh dialogue");
             this.dialogueA = false;
             this.mothfather.setInteractive();
             this.mothfather.tint = colorPalette.purpleInt;
@@ -119,7 +118,6 @@ class Scene4 extends Phaser.Scene
 
         if(this.dialogueB && dialogueComplete)
         {
-            console.log("ending scene");
             this.dialogueB = false;
             this.endOnB();
         }

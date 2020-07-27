@@ -208,8 +208,6 @@ class Scene7 extends Phaser.Scene
     {
         if(this.dialogueA && dialogueComplete)
         {
-            console.log("powering clues");
-            console.log("refreshing dialogue");
             this.dialogueA = false;
             this.paper0.setInteractive();
             this.paper1.setInteractive();
@@ -222,7 +220,6 @@ class Scene7 extends Phaser.Scene
 
         if(this.dialogueB && dialogueComplete)
         {
-            console.log("refreshing dialogue");
             this.reSetInteractive();
             this.dialogueB = false;
             this.refreshDialogue();
@@ -230,7 +227,6 @@ class Scene7 extends Phaser.Scene
 
         if(this.dialogueC && dialogueComplete)
         {
-            console.log("ending scene");
             this.dialogueC = false;
             this.endOnC();
         }

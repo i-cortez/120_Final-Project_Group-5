@@ -194,8 +194,6 @@ class Scene8 extends Phaser.Scene
     {
         if(this.dialogueA && dialogueComplete)
         {
-            console.log("powering socks");
-            console.log("refreshing dialogue");
             this.dialogueA = false;
             dialogueComplete = false;
             this.sock0.setInteractive();
@@ -212,14 +210,12 @@ class Scene8 extends Phaser.Scene
         if(this.choice0)
         {
             this.choice0 = false;
-            console.log("end with option 0");
             this.sound.stopByKey("end_song");
             this.scene.start("letHerGo");
         }
         else if(this.choice1)
         {
             this.choice1 = false;
-            console.log("end with option 1");
             this.sound.stopByKey("end_song");
             this.scene.start("haveHerStay");
         }

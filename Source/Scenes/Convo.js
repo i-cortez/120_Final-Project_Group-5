@@ -57,7 +57,6 @@ class Convo extends Phaser.Scene
     init(data)
     {
         this.file = data.file;
-        console.log(this.file);
     }
 
     preload()
@@ -221,7 +220,7 @@ class Convo extends Phaser.Scene
         {
             // simply exit the last speaker and remove the dialog box
             // can also build other logic to change game states here
-            console.log("End of conversations");
+            // console.log("End of conversations");
 
             // tween out priour speaker's image
             if(this.dialogueLastSpeaker)
