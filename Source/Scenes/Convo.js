@@ -20,7 +20,7 @@ class Convo extends Phaser.Scene
 
         this.TEXT_X = 640; // text w/in dialogue box x-pos
         this.TEXT_Y = 360; // text w/in dialogue box y-pos
-        this.TEXT_SIZE = 24; // text font size (in pixels)
+        this.TEXT_SIZE = 28; // text font size (in pixels)
         this.TEXT_MAX_WIDTH = 600; // max width of text within box
 
         this.NEXT_TEXT = "[LEFT CLICK]"; // text to display for next prompt
